@@ -25,13 +25,14 @@ jobs:
         run: |
           mkdir -p output
           for file in *.md; do
+            [ -f "$file" ] || continue
             pandoc "$file" \
               --pdf-engine=xelatex \
               -V geometry:margin=1in \
               -V toc=true \
               -V pagestyle=plain \
               -V mainfont="Noto Sans CJK SC" \
-              -V header-includes="\\usepackage{fancyhdr}\\pagestyle{fancy}\\fancyhf{}\\rfoot{\\thepage}" \
+              -V header-includes="\\usepackage{fancyhdr}\\pagestyle{fancy}\\fancyhf{}\\rfoot{\\thepage}\\usepackage{amsmath}" \
               -o "output/${file%.md}.pdf"
           done
 
