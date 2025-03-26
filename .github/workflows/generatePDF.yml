@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y pandoc
+          sudo apt install -y pandoc texlive-xetex
 
       - name: Convert Markdown to PDF
         run: |
