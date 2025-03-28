@@ -8,11 +8,11 @@ $$\Huge \textbf{Contributor}$$
 
 ------------------------------
 
-> Update: 2024/02/20 23:56
+> Update: 2025/03/28
 
 （按贡献时间先后顺序排序）
 
-叶睿聪（dgsyrc@github）、刘明楷（milchstrasse565@github）、洪佳、杜雨蒙、邱万理、程英杰、胡彦祺
+叶睿聪（[CCongCirno](https://github.com/CCongCirno)）、刘明楷（[milchstrasse565](https://github.com/milchstrasse565)）、洪佳（[Xiancaijiang](https://github.com/Xiancaijiang)）、杜雨蒙、邱万理、程英杰（[cheng-lao](https://github.com/cheng-lao)）、胡彦祺（[huer512](https://github.com/huer512)）、唐锦梁（[VaporTang](https://github.com/VaporTang)）
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -142,11 +142,13 @@ $$\Huge \textbf{目录}$$
 
 ## 2 环境配置
 
-### 2.1 双系统安装
+### 2.1 双系统安装&纯Ubuntu安装
 
 > Contributors: 叶睿聪 (dgsyrc@github)
 
 #### 2.1.1 空间预留
+
+纯Ubuntu安装可跳过空间预留步骤
 
 方法一：如果电脑有多的硬盘插槽，可以直接买新的固态硬盘装上电脑直接跳过本步骤，硬盘的安装可以自己搜（过程很简单），怕弄坏可以拿硬盘找官方保修点装
 
@@ -188,13 +190,13 @@ $$\Huge \textbf{目录}$$
 
 下载Ubuntu 22.04
 
-[Ubuntu 22.04 的安装镜像文件（清华开源镜像站）](https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/jammy/ubuntu-22.04.2-desktop-amd64.iso)
+[【原链接失效，更新为22.04.5】Ubuntu 22.04 的安装镜像文件（清华开源镜像站）](https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/22.04/ubuntu-22.04.5-desktop-amd64.iso)
 
 安装好后会看到电脑里有个叫 Ventoy 的盘，把下好的 Ubuntu 22.04 镜像放进去
 
 ![image-20230713154523447](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20230713154523447-1699090731798-35.png)
 
-如果不是这个文件，那大概率是下错了
+*图片例为22.04.2，下载链接更新为22.04.5，安装22.04.5的即可*
 
 接着下载这四个东西，都放进U盘
 
@@ -214,6 +216,38 @@ $$\Huge \textbf{目录}$$
 ```
 
 #### 2.1.3 Ubuntu安装
+
+> 参考文献：
+>
+> [13] [关于重装电脑碰到的BUG及其修复教程_verification failed:(0x1a)-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/Sco_ohhG/article/details/135394506)
+
+若无法进入bios（不显示按F几进入setup或者boot之类的字样且按对应按键无反应）
+
+若为已有Ubuntu进行重装，进入Ubuntu，终端输入以下指令重启即可进入BIOS更改引导顺序（Boot->Boot Priority）
+
+```
+sudo systemctl reboot --firmware-setup
+```
+
+若为格式化后的空盘（或新的硬盘无预装系统），显示找不到启动盘且无法进入BIOS
+
+插入制作的Ventoy启动盘后显示：
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/e9d0256177cdae101e9ed14fd12d2549.png" alt="img" style="zoom:50%;" />
+
+选择OK后选择Enroll Key
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250215014657546.png" alt="image-20250215014657546" style="zoom:50%;" />
+
+回车
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250215014747223.png" alt="image-20250215014747223" style="zoom:50%;" />
+
+选择.cer即可，确认后reboot即可进入ventoy
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250215014712038.png" alt="image-20250215014712038" style="zoom:50%;" />
+
+##### 2.1.3.1 双系统下Ubuntu安装
 
 重启电脑，但不要进windows
 
@@ -339,6 +373,16 @@ $$\Huge \textbf{目录}$$
 
 在 `Windows Boot Manager` 那一行回车进入 `Windows`
 
+##### 2.1.3.2 纯Ubuntu安装
+
+同2.1.3.1节中 选择 `Something else` 步骤
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20230713160924192-1699103582809-49.png" alt="image-20230713160924192" style="zoom:40%;" />
+
+但进入后删除目标安装硬盘（例nvme02）中的所有原有分区（除了efi），不要删错删成U盘的或别的硬盘
+
+后续步骤同2.1.3.1节的分盘及往后步骤
+
 #### 2.1.4 常见问题
 
 **① U盘安装时进不去Ubuntu安装界面，卡在黑屏白字页，内容显示某个block error且刷屏**
@@ -425,7 +469,6 @@ sudo apt-get install -y boot-repair && boot-repair
 ```
 sudo apt-get install build-essential
 sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-sudo apt install -y wget unzip
 sudo apt install -y make
 sudo apt update
 ```
@@ -433,6 +476,16 @@ sudo apt update
 `sudo` 指令需要输入前面设置的密码
 
 如果提示[Y/n]，输入 Y 回车即可
+
+如果执行 `sudo apt-get install build-essential` 时遇到
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241125192633780.png" alt="image-20241125192633780" style="zoom:33%;" />
+
+请先执行以下指令即可解决
+
+```
+sudo apt-get update
+```
 
 将OpenCV 4.5.5源码包解压到桌面，并把OpenCV_Contrib解压到OpenCV 4.5.5所在的文件夹内
 
@@ -452,12 +505,12 @@ sudo apt update
 cmake ..
 ```
 
-注意，执行 `cmake ..` 时可能会提示ippicv库/ade库的文件下载失败（向上检查一遍刚才终端的输出信息【黄色字体】，这个错误不会在输出信息末尾提示），详细报错和解决方式见 `2.2.2 常见问题`
+注意，执行 `cmake ..` 时可能会提示ippicv库/ade库的文件下载失败（务必要向上检查一遍刚才终端的输出信息【黄色字体】，这个报错信息不会在输出信息末尾提示），黄色字体中CMP0148相关错误可忽略，其它详细报错和解决方式见 `2.2.2 常见问题`
 
 若没有报错，继续执行以下指令
 
 ```
-sudo make -j2
+sudo make -j8
 sudo make install
 ```
 
@@ -468,6 +521,7 @@ sudo make install
 新建文件夹 `build`，在终端打开后执行：
 
 ```
+cmake ..
 make -j8
 ./opencv_example
 ```
@@ -589,6 +643,21 @@ make -j8
   ```
   
   重新cmake、make编译即可
+  
+- ippicv库Assertation failed: DL_DESTINATION_DIR
+
+  **报错信息：**
+
+  <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250121210719167.png" alt="image-20250121210719167" style="zoom: 50%;" />
+
+  **解决方案：**
+
+  参考前文ippicv库下载失败，在 `ippicv.cmake` 中修改目录的下一行补上（原文件已有，但可能在改目录时删多了）
+
+  ```
+  DESTINATION_DIR "${THE_ROOT}"
+  ```
+
 
 ### 2.3 VSCode
 
@@ -1801,13 +1870,15 @@ uname -a
 
 ### 2.9 中文输入法安装(Ubuntu)
 
-> Contributors: 洪佳
+> Contributors: 洪佳、叶睿聪
 
 > 参考文献：
 >
 > [8] [ubuntu安装搜狗输入法，图文详解+踩坑解决-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/qq_42257666/article/details/129098009)
 >
 > [9] [ubuntu系统安装好搜狗输入法后只能输入英文，无法输入中文的解决方案_ubuntu搜狗输入法无法输入中文-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/qq_39779233/article/details/128086129?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"128086129"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+>
+> [15] [Ubuntu22.04 系统添加中文输入法 - zensi - 博客园 - https://www.cnblogs.com/](https://www.cnblogs.com/zensi/p/17725119.html?_refluxos=a10)
 
 #### 2.9.1 添加中文语言支持
 
@@ -1818,6 +1889,36 @@ uname -a
 弹出“已安装语言”窗口，勾选中文（简体），点击应用
 
 <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240124183315544.png" alt="image-20240124183315544" style="zoom:33%;" />
+
+以下两节（2.9.2/2.9.3）二选一即可
+
+#### 2.9.2 ibus-Pinyin 安装
+
+终端执行命令安装
+
+```
+sudo apt-get install ibus-pinyin
+```
+
+安装完成后，重启
+
+重启前往 `Setting->Keyboard`
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Screenshot from 2025-03-03 19-52-35.png" alt="Screenshot from 2025-03-03 19-52-35" style="zoom:50%;" />
+
+点击 `+` 号
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Screenshot from 2025-03-03 19-53-19.png" alt="Screenshot from 2025-03-03 19-53-19" style="zoom:50%;" />
+
+选择 `Chinses`
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Screenshot from 2025-03-03 19-53-35.png" alt="Screenshot from 2025-03-03 19-53-35" style="zoom: 80%;" />
+
+选择 `Intelligenc Pinyin` 即可
+
+#### 2.9.3 搜狗输入法安装
+
+##### 2.9.3.1 输入法系统安装
 
 回到“语言支持”窗口，在键盘输入法系统中，选择`fcitx`
 
@@ -1838,14 +1939,14 @@ sudo apt-get install fcitx
 sudo cp /usr/share/applications/fcitx.desktop /etc/xdg/autostart/
 ```
 
-#### 2.9.2 下载安装包
+##### 2.9.3.2 下载安装包
 
 打开终端输入`uname -a` 查看系统架构
 进入[搜狗输入法`linux`下载页面](https://shurufa.sogou.com/linux)，选择适合你ubuntu架构的版本download
 
 <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240124183346251.png" alt="image-20240124183346251" style="zoom:33%;" />
 
-#### 2.9.3 安装输入法和依赖
+##### 2.9.3.3 安装输入法和依赖
 
 ①安装输入法
 
@@ -1861,7 +1962,7 @@ sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
 sudo apt install libgsettings-qt1
 ```
 
-#### 2.9.4 配置输入法
+##### 2.9.3.4 配置输入法
 
 ①查看桌面右上角的键盘图标，看到列表中出现了搜狗，需要配置一下才能使用
 
@@ -1883,7 +1984,7 @@ sudo apt install fcitx-config-gtk
 
 4)如果在2步是自动添加好的搜狗输入法，选中搜狗输入法点`-`取消掉，然后再执行第3步，不然你永远也调不出来搜狗输入法或者输入中文。
 
-#### 2.9.5 其他
+##### 2.9.3.5 其他
 
 ①上面步骤做完后可以使用搜狗输入法但是只能输入英文，这可能是缺少包导致的，你可以去官网重新下载deb安装包进行尝试
 
@@ -1930,9 +2031,10 @@ tar -xzvf ***.tar.gz
 
 ```
 sudo apt-get install g++
-sudo apt-get install libssl-dev 
+sudo apt-get install libssl-dev
+sudo apt-get install make
 ./configure
-make
+make -j8
 sudo make install
 ```
 
@@ -1950,11 +2052,28 @@ cmake --version
 
 > Contributor: 叶睿聪 (dgsyrc@github)
 
-下载源码（源码较大，请确保网络通畅）
+git安装
+
+```
+sudo apt-get install git
+```
+
+下载源码（源码较大，请确保网络通畅，不建议使用梯子，可能会报错）
 
 ```
 git clone --recursive https://github.com/Microsoft/onnxruntime
 ```
+
+> **报错1**
+>
+> error: RPC failed; curl 16 Error in the HTTP2 framing layer
+>
+> 使用以下指令解决
+>
+> ```
+> git config --global http.postBuffer 5242880000
+> git config --global https.postBuffer 5242880000
+> ```
 
 安装必要环境
 
@@ -1980,16 +2099,18 @@ sudo ./build.sh --config RelWithDebInfo --build_shared_lib --parallel --allow_ru
 
 **可以用以下方式节省编译时间**
 
+> 如加--skip_tests参数，或者：
+>
 > 在看到开始编译时（如下图）
 >
 > <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240222185820853.png" alt="image-20240222185820853" style="zoom: 50%;" />
 >
 > 按下 `Ctrl+C` 终止编译
 >
-> 在 `onnxruntime/build/Linux/RelWithDebInfo` 目录下使用以下命令
->
+> 在 `onnxruntime/build/Linux/RelWithDebInfo` 目录下使用以下命令（nuc02替换为实际的用户名）
+> 
 > ```
-> sudo cmake --build /home/nuc02/Desktop/onnxruntime/build/Linux/RelWithDebInfo --config RelWithDebInfo -j12
+>sudo cmake --build /home/nuc02/Desktop/onnxruntime/build/Linux/RelWithDebInfo --config RelWithDebInfo -j8
 > ```
 >
 > 注意编译时是否有报错
@@ -2001,9 +2122,9 @@ sudo ./build.sh --config RelWithDebInfo --build_shared_lib --parallel --allow_ru
 > 缺少python环境
 >
 > 此时应输入以下指令安装环境
->
+> 
 > ```
-> sudo apt-get install python-dev-is-python3
+>sudo apt-get install python-dev-is-python3
 > ```
 >
 > **报错2**
@@ -2013,22 +2134,19 @@ sudo ./build.sh --config RelWithDebInfo --build_shared_lib --parallel --allow_ru
 > 缺少 `numpy` 库
 >
 > 输入以下指令安装环境
->
+> 
 > ```
-> sudo apt-get install python3-numpy-dev
+>sudo apt-get install python3-numpy-dev
 > ```
 >
 > 安装完成后再重新编译
 >
-> 使用加速编译最后需要重新执行一次原本正常编译的指令检查
->
+> 使用加速编译最后需要回到onnxruntime目录下打开终端重新执行一次原本正常编译的指令检查
+> 
 > ```
-> sudo ./build.sh --config RelWithDebInfo --build_wheel --update --build --allow_running_as_root
+>sudo ./build.sh --config RelWithDebInfo --build_shared_lib --parallel --allow_running_as_root
 > ```
 >
-> <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240222193041718.png" alt="image-20240222193041718" style="zoom:67%;" />
->
-> 若报以上错误，可以忽略直接下一步
 
 编译完成后
 
@@ -2038,13 +2156,769 @@ sudo ./build.sh --config RelWithDebInfo --build_shared_lib --parallel --allow_ru
 sudo make install
 ```
 
+### 2.12 pytorch & anaconda
+
+#### 2.12.1 anaconda
+
+官方地址（最新版）：[Download Now | Anaconda](https://www.anaconda.com/download/success)
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153055921.png" alt="image-20250204153055921" style="zoom:50%;" />
+
+安装完成，开始菜单进入anaconda prompt
+
+创建虚拟环境（建议版本3.9以上）
+
+```
+conda create -n  自己取的环境名字  python=版本号
+```
+
+激活环境
+
+```
+conda activate 环境名字
+```
+
+查看存在环境
+
+```
+conda env list
+```
+
+进入命令提示符cmd
+
+查看CUDA版本
+
+```
+nvidia-smi
+```
+
+![image-20250204153112021](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153112021.png)
+
+即12.6，安装对应CUDA工具包，版本小于等于上图版本号
+
+#### 2.12.2 CUDA安装
+
+CUDA官方地址：[CUDA Toolkit Archive | NVIDIA Developer](https://developer.nvidia.com/cuda-toolkit-archive)
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153127184.png" alt="image-20250204153127184" style="zoom: 33%;" />
+
+安装CUDA
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153150013.png" alt="image-20250204153150013" style="zoom:50%;" />
+
+选择精简安装，安装完成后打开cmd检查安装情况
+
+```
+nvcc -V
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153206530.png" alt="image-20250204153206530" style="zoom:50%;" />
+
+#### 2.12.3 cuDNN安装
+
+cuDNN官方地址：[cuDNN Archive | NVIDIA Developer](https://developer.nvidia.com/rdp/cudnn-archive)
+
+版本对应CUDA的安装版本
+
+下载后，压缩包中三个文件夹解压到该目录下
+
+```
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153217917.png" alt="image-20250204153217917" style="zoom:50%;" />
+
+验证cudnn是否安装成功
+
+cmd进入目录（在该目录下资源管理器的目录框中输入cmd回车即可）
+
+```
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\extras\demo_suite
+```
+
+输入
+
+```
+deviceQuery.exe
+```
+
+检查安装
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153237425.png" alt="image-20250204153237425" style="zoom:50%;" />
+
+#### 2.12.4 安装PyTorch
+
+官方地址：[PyTorch](https://pytorch.org/)
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153247322.png" alt="image-20250204153247322" style="zoom:50%;" />
+
+将pip命令粘贴到anaconda的已配置好的虚拟环境中
+
+安装完成后，输入以下指令检查是否安装成功
+
+```
+pip list
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153300299.png" alt="image-20250204153300299" style="zoom:50%;" />
+
+打开vscode，进入工作目录
+
+按下 `ctrl+shift+P` ,选择 `Python: Select Interpreter`
+
+选中刚才创建的虚拟环境即可
+
+运行以下代码检验PyTorch安装结果
+
+```python
+import torch
+print(torch.__version__)
+
+x = torch.rand(5, 3)
+
+if torch.cuda.is_available():
+    x = x.to("cuda")
+    print(x)
+else:
+    print("CUDA is not available")
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153322387.png" alt="image-20250204153322387" style="zoom:50%;" />
+
+#### 2.12.5 测试例：mnist手写数字识别
+
+安装 `matplotlib` 包（在虚拟环境下安装）
+
+```
+pip install matplotlib
+```
+
+代码
+
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+from torchvision import datasets, transforms
+import torch.utils.data as data
+import matplotlib.pyplot as plt
+
+BATCH_SIZE = 128
+
+# 设置设备
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+# 数据加载和预处理
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))  # 将像素值归一化为 -1 到 1
+])
+
+# download and load the data
+train_dataset = torchvision.datasets.MNIST(root='./mnist/', train=True, transform=transform, download=True)
+test_dataset = torchvision.datasets.MNIST(root='./mnist/', train=False, transform=transform, download=False)
+
+# encapsulate them into dataloader form
+train_loader = data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
+test_loader = data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, drop_last=True)
+
+# 定义模型
+class MNISTModel(nn.Module):
+    def __init__(self):
+        super(MNISTModel, self).__init__()
+        self.model = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(28 * 28, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 10)
+        )
+    
+    def forward(self, x):
+        return self.model(x)
+
+# 实例化模型
+model = MNISTModel().to(device)
+
+# 定义损失函数和优化器
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# 训练模型
+def train_model(model, train_loader, criterion, optimizer, epochs=5):
+    model.train()
+    for epoch in range(epochs):
+        total_loss = 0
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
+            
+            # 前向传播
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            
+            # 反向传播和优化
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+        
+        print(f"Epoch [{epoch+1}/{epochs}], Loss: {total_loss / len(train_loader):.4f}")
+
+# 测试模型
+def test_model(model, test_loader):
+    model.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for images, labels in test_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+    
+    print(f"Accuracy: {100 * correct / total:.2f}%")
+
+# 可视化识别结果
+def show_predictions(model, test_loader, num_images=10):
+    model.eval()
+    images_shown = 0
+    plt.figure(figsize=(12, 6))
+
+    with torch.no_grad():
+        for images, labels in test_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs, 1)
+            
+            for i in range(images.size(0)):
+                if images_shown >= num_images:
+                    break
+                
+                image = images[i].cpu().numpy().squeeze()  # 转为二维图像
+                label = labels[i].item()
+                pred = predicted[i].item()
+                
+                plt.subplot(2, (num_images + 1) // 2, images_shown + 1)
+                plt.imshow(image, cmap='gray')
+                plt.title(f"True: {label}, Pred: {pred}", 
+                          color="green" if label == pred else "red")
+                plt.axis('off')
+                images_shown += 1
+            
+            if images_shown >= num_images:
+                break
+    
+    plt.tight_layout()
+    plt.show()
+
+
+# 执行训练和测试
+train_model(model, train_loader, criterion, optimizer, epochs=5)
+test_model(model, test_loader)
+
+# 显示部分识别结果
+show_predictions(model, test_loader, num_images=10)
+```
+
+运行以上代码
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153521410.png" alt="image-20250204153521410" style="zoom:50%;" />
+
+![image-20250204153533872](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153533872.png)
+
+若mnist数据集下载失败，`shift+右键` MNIST
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153546080.png" alt="image-20250204153546080" style="zoom:50%;" />
+
+交换mirrors中两个链接的位置，交换后为
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250204153556588.png" alt="image-20250204153556588" style="zoom:50%;" />
+
+### 2.13 无线网卡驱动安装（Ubuntu）
+
+若安装Ubuntu后，设置中找不到wifi连接，参考以下步骤解决（适用于Intel的无线网卡）
+
+打开终端，输入以下指令确定无线网卡属于intel
+
+```
+lspci -nn
+```
+
+若有显示 `Network controller [0280]: Intel Corporation Device`，说明为Intel无线网卡
+
+先使用USB连接手机网络以便下载环境
+
+USB共享网络打开方式（路径仅供参考，因具体系统而异）：`热点->更多共享设置->USB共享网络`
+
+注意要接好线再打开，否则可能不显示USB共享网络选项
+
+编译环境安装
+
+```
+sudo apt-get install make bison flex git
+```
+
+下载以下包：
+
+```
+git clone https://github.com/intel/backport-iwlwifi.git
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
+```
+
+进入 `backport-iwlwifi` 下的 `iwlwifi-stack-dev` 文件夹打开终端并编译
+
+```
+sudo make defconfig-iwlwifi-public
+sudo make
+sudo make install
+```
+
+进入 `linux-firmware` 文件夹打开终端复制ucode驱动文件
+
+```
+sudo cp iwlwifi-* /lib/firmware
+```
+
+重启完成安装
+
 <div STYLE="page-break-after: always;"></div>
 
 ## 3 视觉知识
 
 ### 3.1 OpenCV
 
-#### 3.1.1 常见错误
+OpenCV环境配置：见2.2 OpenCV
+
+VSCode插件配置：见2.3.3 OpenCV环境配置
+
+#### 3.1.1 cmake配置
+
+查看cmake版本
+
+```
+cmake --version
+```
+
+`CMakeLists.txt` 文件配置
+
+```cmake
+# cmake编译所需最低版本（新项目则设为当前cmake版本）
+cmake_minimum_required(VERSION 3.10.0)
+# 项目名称demo
+project(demo)
+# 指定C++版本
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+# 导入OpenCV库
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+link_libraries(${OpenCV_LIBS})
+# 将项目目录作为项目include包含的目录（加入到列表EXTRA_INCLUDES）
+list(APPEND EXTRA_INCLUDES ${PROJECT_SOURCE_DIR})
+# 将列表EXTRA_INCLUDES的所有目录作为项目include包含的目录
+include_directories(${EXTRA_INCLUDES})
+# 指定使用demo.cpp生成可执行文件
+add_executable(Demo demo.cpp)
+# 链接相关的libraries
+target_link_libraries(Demo
+    PUBLIC
+    ${OpenCV_LIBS}
+    PRIVATE
+)
+
+# 编译文件连接优化开关
+set_target_properties(Demo PROPERTIES INTERPROCEDURAL_OPTIMIZATION True)
+# 设置可执行文件输出目录
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/bin")
+# 设置编译的库文件输出目录
+set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib")
+```
+
+#### 3.1.2 VSCode配置
+
+新建一个项目文件夹**（不要中文！写任何代码都不要在任何中文路径下编译，文件名也不要使用中文）**
+
+示例代码如下：
+
+`demo.cpp`
+
+```c++
+#include<demo.h>
+
+using namespace cv;
+
+int main()
+{
+    Mat a;
+    return 0;
+}
+```
+
+`demo.h`
+
+```c++
+#pragma once
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/opencv.hpp>
+```
+
+第一次输入opencv相关头文件时，由于C++扩展没有引入opencv库的目录，会弹出报错，按以下方式解决
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241116232941180.png" alt="image-20241116232941180" style="zoom: 50%;" />
+
+选择
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241116232948457.png" alt="image-20241116232948457" style="zoom:50%;" />
+
+选择第一个即可
+
+在项目文件夹目录下，打开终端
+
+输入以下指令创建build文件夹
+
+```
+mkdir build
+```
+
+进入 `build` 文件夹分别输入以下两个指令编译
+
+```
+cmake ..
+make -j8
+```
+
+编译完成后，输入以下指令执行程序
+
+```
+./bin/Demo
+```
+
+若无报错，则配置完成
+
+#### 3.1.3 基础功能
+
+##### 3.1.3.1 图像的读写
+
+**imread()和imwrite()**
+
+```c++
+Mat img; // 新建一个Mat类型变量
+img = imread("读取路径"); // 读取指定路径的图像
+imwrite("保存路径", img);  // 保存图像到指定路径
+```
+
+imread可在路径后加参数，缺省值为1
+
+下面的语句等价
+
+```c++
+img = imread("读取路径", IMREAD_COLOR);
+img = imread("读取路径", 1);
+img = imread("读取路径");
+```
+
+imread()参数的功能
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117124316116.png" alt="image-20241117124316116" style="zoom:33%;" />
+
+##### 3.1.3.2 图像的展示
+
+**imshow()**
+
+```c++
+imshow("窗口名字", img); // 在指定窗口中显示图像
+waitKey(0); // 必须要在imshow后加，或者在程序结束前加，否则运行到程序结束窗口会自动关闭
+```
+
+**destroyWindow()和destroyAllWindows()**
+
+```c++
+destroyWindow("窗口名字"); // 关闭指定窗口
+destroyAllWindows(); // 关闭所有窗口
+```
+
+**namedWindow()**
+
+```c++
+namedWindow("窗口名字", 窗口类型); // 窗口类型值缺省为1
+```
+
+窗口类型有以下两种常用类型
+
+| 窗口类型        | 作用                                               | 值   |
+| --------------- | -------------------------------------------------- | ---- |
+| WINDOW_NORMAL   | 可通过代码改变窗口大小，图像默认等比例缩放         | 0    |
+| WINDOW_AUTOSIZE | 不可通过代码改变窗口大小，窗口大小根据图像大小确定 | 1    |
+
+其它功能用的较少，这里暂不给出
+
+**resizeWindow()**
+
+```c++
+resizeWindow("窗口名字", Size(cols, rows)); // cols控制横向大小，即列数，rows控制纵向大小，即行数，单位均为像素，值只能是正整数
+```
+
+##### 3.1.3.3 视频的读取
+
+**VideoCapture**
+
+读取视频文件
+
+```c++
+VideoCapture cap("视频路径"); // 声明一个cap变量，使用指定视频初始化
+Mat img;
+if (!cap.isOpened())
+{
+    std::cerr << "Error: Could not open video" << std::endl;
+    return -1;
+}
+double fps = cap.get(CAP_PROP_FPS); // 获取帧率
+while (true)
+{
+	cap.read(img); // 按顺序将视频的每一帧存入img
+    if (!img.empty())
+    {
+        imshow("窗口名称", img);
+        waitKey(1000 / fps); // 播放时的帧率与原视频一致
+    }
+    else
+    {
+    	break;
+    }
+}
+```
+
+读取相机
+
+```c++
+VideoCapture cap = VideoCapture(0); // 调用相机，默认第一个相机编号是0
+Mat img;
+if (!cap.isOpened()) // 是否成功打开相机
+{
+    std::cerr << "Error: Could not open camera" << std::endl; // 输出错误信息
+    return -1;
+}
+double fps = cap.get(CAP_PROP_FPS); // 获取帧率
+while (true)
+{
+	cap.read(img); // 按顺序将视频的每一帧存入img
+	if (!img.empty()) // 视频没读完，此时img不为空
+	{
+    	imshow("窗口名字", img);
+        waitKey(1000 / fps); // 播放时的帧率与相机一致 或者用固定值30
+    }
+    else
+    {
+        break;
+    }
+}
+```
+
+get() 方法的详细功能
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117125136873.png" alt="image-20241117125136873" style="zoom:33%;" />
+
+录制视频
+
+```c++
+VideoCapture cap = VideoCapture(0); // 调用相机，默认第一个相机编号是0
+Mat img;
+if (!cap.isOpened()) // 是否成功打开相机
+{
+    std::cerr << "Error: Could not open camera" << std::endl; // 输出错误信息
+    return -1;
+}
+double fps = cap.get(CAP_PROP_FPS); // 获取帧率
+VideoWriter writer; // 保存视频用VideoWriter类
+int codec = VideoWriter::fourcc('M', 'J', 'P', 'G'); // 编码格式
+std::string filename = "save.avi"; // 视频名称
+bool isWriterOpen = false;
+bool isColor; // 是否为彩色视频
+while (true)
+{
+	cap.read(img); // 按顺序将视频的每一帧存入img
+	if (!img.empty()) // 视频没读完，此时img不为空
+	{
+        if (!isWriterOpen)
+        {
+            isColor = (img.type() == CV_8UC3); // 彩色视频判断
+            writer.open(filename, codec, fps, img.size(), isColor); // 初始化录制
+            isWriterOpen = true;
+        }
+        writer.write(img); // 将画面存入录制器
+    	imshow("窗口名字", img);
+        waitKey(1000 / fps); // 播放时的帧率与相机一致 或者用固定值30
+    }
+    else
+    {
+        break;
+    }
+}
+```
+
+保存的文件在终端当前打开的目录，不是可执行文件所在目录
+
+##### 3.1.3.4 Mat的初始化与数据类型
+
+Mat类型本质是个矩阵
+
+**初始化**
+
+```c++
+Mat img(200, 400, CV_8UC3, Scalar(0, 0, 0)); // 创建一个高200px 宽400px 的8位3通道彩色图像 初始化值为0 Scalar(0, 0, 0)可以缺省
+```
+
+其中，图像的宽度高度初始化可以使用Size(cols, rows)
+
+以下方式与前面等价
+
+```c++
+Mat img(Size(400, 200), CV_8UC3, Scalar(0, 0, 0)); // 注意宽高位置相反
+```
+
+此外，可以使用已有矩阵构造
+
+```c++
+Mat img1;
+Mat img2(img1);
+Mat img3=img1;
+```
+
+但这种方式实际上只复制了img1的矩阵头，因此两者的修改会相互影响（理解为起了个别名，类比函数的传址调用）
+
+如果希望复制一个一样的矩阵，应使用clone()或copyTo()
+
+```
+Mat img1;
+Mat img2=img1.clone();
+Mat img3=img1.copyTo();
+```
+
+**数据类型**
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117111755022.png" alt="image-20241117111755022" style="zoom:33%;" />
+
+若定义单通道图像，可不写 `C1` ，3通道图像写 `C3`。例如 `CV_8UC3` 表示数据为8位无符号整数的三通道图像
+
+最多只有四个通道
+
+**颜色定义**
+
+Scalar()定义颜色，可以理解为一个向量，有几个通道向量就有几个分量
+
+其中，三通道彩色图像中，OpenCV的存储顺序是BGR而不是RGB，例如 `Scalar(20,40,60)` 中20为蓝色通道分量，40为绿色通道分量，60为红色通道分量
+
+##### 3.1.3.5 Mat的赋值
+
+构造时的赋值参考前面的初始化，通过Scalar()可以给每个元素赋相同初值
+
+循环赋值
+
+```c++
+// 单通道
+Mat img1(128, 128, CV_8U);
+for (int i = 0; i < img1.cols; i++)
+{
+	for (int j = 0; j < img1.rows; j++)
+    {
+    	img1.at<uchar>(i, j) = i + j; // uchar对应8U（8位无符号整数）
+    }
+}
+// 多通道
+Mat img2(128, 128, CV_8UC3);
+for (int i = 0; i < img2.cols; i++)
+{
+    for (int j = 0; j < img2.rows; j++)
+    {
+        Vec3b elem = img2.at<Vec3b>(i, j); // Vec3b 是3通道uchar向量
+        elem.val[0] = i + j;
+        elem.val[1] = (i > j) ? 127 + i : 127 + j;
+        elem.val[2] = 255 - (i + j);
+        img2.at<Vec3b>(i, j) = elem;
+    }
+}
+```
+
+对于多通道矩阵，建议先用向量读出，修改向量后再写回，给出三通道下的对应关系
+
+| 图像类型 | 单个数值类型 | 向量类型 | 单个数值长度（位） |
+| -------- | ------------ | -------- | ------------------ |
+| CV_8UC3  | uchar        | Vec3b    | 8                  |
+| CV_16SC3 | short        | Vec3s    | 16                 |
+| CV_16UC3 | ushort       | Vec3w    | 16                 |
+| CV_32SC3 | int          | Vec3i    | 32                 |
+| CV_32FC3 | float        | Vec3f    | 32                 |
+| CV_64FC3 | double       | Vec3d    | 64                 |
+
+读取同理
+
+##### 3.1.3.5 Mat的运算
+
+Mat支持加减乘除四则运算，加法减法都是矩阵对应元素相加减
+
+两个矩阵相乘是矩阵乘法，要求必须A的列数等于B的行数
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117121741373.png" alt="image-20241117121741373" style="zoom:33%;" />
+
+矩阵乘常数是对应每个元素乘该常数，如果要两个矩阵的对应元素相乘作为结果矩阵的值，则
+
+```c++
+m = a.mul(b); // a,b,m均为Mat矩阵，大小相同
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117122150712.png" alt="image-20241117122150712" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117122158378.png" alt="image-20241117122158378" style="zoom:33%;" />
+
+矩阵点乘
+
+```c++
+m = a.dot(b); // a,b均为Mat矩阵，大小相同，m为一个数
+```
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117122133982.png" alt="image-20241117122133982" style="zoom:33%;" />
+
+矩阵除法不论是除常数还是除矩阵均为被除矩阵对应位置元素除除数（若为常数，则除常数，为矩阵则除对应位置的元素值）
+
+##### 3.1.3.6 Mat的属性
+
+参考下表
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117122626148.png" alt="image-20241117122626148" style="zoom:33%;" />
+
+访问方式示例：
+
+```c++
+Mat img;
+int i = img.cols;
+int j = img.rows;
+int ch = img.channels();
+```
+
+##### 3.1.3.7 颜色模型转换
+
+转换Mat的颜色模型使用cvtColor()函数
+
+```
+cvtColor(src, dst, code, dstCn = 0); // 依次为原始图像、目标图像、颜色转换标志、目标图像通道数（缺省值为0，与src一致）
+```
+
+颜色转换标志
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117132501256.png" alt="image-20241117132501256" style="zoom:33%;" />
+
+示例：
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20241117133535765.png" alt="image-20241117133535765" style="zoom:33%;" />
+
+从左到右从上到下分别是BGR、GRAY、YUV、HSV、Lab
+
+#### 3.1.4 常见错误
 
 - 路径正确，视频无法读取且无法保存录制的视频
 
@@ -2070,11 +2944,11 @@ sudo make install
 
   **解决方案：** fps与frameSize手动设置即可，不使用 `cv::videoCapture` 的成员函数读取
 
-### 3.2 ROS
-
-> Contributors: 刘明楷（milchstrasse565@github）
+### 3.2 ROS与导航
 
 #### 3.2.1 实操学习
+
+> Contributors: 刘明楷（milchstrasse565@github）
 
 - 屏蔽导航包里的速度发布语句
 
@@ -2090,20 +2964,1338 @@ sudo make install
 
 - 其他必学
   - 各种消息格式
+  
   - rviz可视化调试 
+  
   - TF坐标变换
+  
   - TF监听与广播
+  
   - launch文件与参数配置
+  
   - cmake编译规则设置
+  
   - rosbag数据记录、回放
+  
 
-### 3.3 yolov8
+#### 3.2.2 IMU与里程计融合
+
+> Contributors: 洪佳
+
+> 参考文献：
+>
+> [5] [IMU和里程计融合_轮式里程计和imu融合-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/baimei4833953/article/details/80768762)
+>
+> [6] [什么是IMU？-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/su_fei_ma_su/article/details/125947605)
+>
+> [7] [一文了解IMU原理、误差模型、标定、惯性传感器选型以及IMU产品调研(含IMU、AHRS、VRU和INS区别)_imu寄存器值计算重力-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/QLeelq/article/details/112985306?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"112985306"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+
+##### 3.2.2.1 概述
+
+实际使用小车的过程中，光有麦轮的里程计计算是不够的，因为实际使用过程中经常会出现轮子打滑和数据出现累计误差的情况，所以我们可以从使用IMU和里程计融合的角度来对系统“升级”。
+
+##### 3.2.2.2 IMU
+
+**简述**
+
+IMU 一般指6轴传感器，内部包含了3轴陀螺仪和3轴加速度计，3轴就是表示 XYZ 平面下的3个坐标轴。
+
+3轴陀螺仪测量的是每个轴上面的角速度，精度一般为 °/s ，也就是按照这个趋势旋转，每秒钟能走过的度数。
+
+3轴加速度计测量的是每个轴所受的重力加速度，比如传感器水平放置水平地面时，理论上只受到z轴负向的重力加速度，大小为 $9.8 m/s^2$
+
+**原理**
+
+详细了解：
+
+[一文了解IMU原理、误差模型、标定、惯性传感器选型以及IMU产品调研(含IMU、AHRS、VRU和INS区别)_imu寄存器值计算重力-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/QLeelq/article/details/112985306?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"112985306"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+
+##### 3.2.2.3 IMU数据获取
+
+**数据接口**
+
+数据接口，通过配置可以输出原始 `ros_imu topic`
+
+还有更多方法
+
+**滤波**
+
+ROS提供的相关包`imu_tools`进行滤波
+
+可以看到`complementary_filter_gain_node`会订阅该`topic`，即该`topic`作为输入滤波得到最终数据(发布`/imu/data` `topic` 类型同样为`sensor_msgs/Imu`)
+
+##### 3.2.2.4 融合方法
+
+**直接融合**
+
+从`imu`得到的数据为一个相对角度(主要使用`yaw`，`roll`和`pitch` 后面不会使用到)，使用该角度来替代由编码器计算得到的角度。
+这个方法较为简单，出现打滑时候因`yaw`不会受到影响，即使你抬起机器人转动一定的角度，得到的里程也能正确反映出来
+
+**卡尔曼滤波**
+
+- 概述
+
+官方卡尔曼滤波的包[`robot_pose_ekf`](http://wiki.ros.org/robot_pose_ekf)，`robot_pose_ekf`开启扩展卡尔曼滤波器生成机器人姿态，支持
+
+`odom`（编码器）
+
+`imu_data`（IMU）
+
+`vo`（视觉里程计）
+
+还可以支持 [GPS](http://wiki.ros.org/robot_pose_ekf/Tutorials/AddingGpsSensor)
+
+- 配置
+
+可以在 `robot_pose_ekf` 包目录中找到 EKF 节点的默认启动文件。启动文件包含许多可配置的参数：
+
+`freq`：过滤器的更新和发布频率。请注意，随着时间的推移，更高的频率会为您提供更多的机器人姿势，但不会提高每个估计的机器人姿势的准确性。
+
+`sensor_timeout`：当传感器停止向过滤器发送信息时，过滤器应该等待多长时间才能在没有该传感器的情况下继续工作。
+
+`odom_used`、`imu_used vo_used`：启用或禁用输入。
+
+可以在启动文件中修改配置，如下所示：
+
+![image-20231129141340231](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20231129141340231.png)
+
+**运行**
+
+创建程序包：
+
+```
+ $ rosdep install robot_pose_ekf
+ $ roscd robot_pose_ekf
+ $ rosmake
+```
+
+**Run** the `robot pose ekf`
+
+```
+ $ roslaunch robot_pose_ekf.launch
+```
+
+**相关节点**
+
+①robot_pose_ekf
+
+`robot_pose_ekf`实现了一个扩展的卡尔曼滤波器，用于确定机器人姿态。
+
+②Subscribed Topics
+
+`Odom` （[`nav_msgs/里程计`](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html))
+
+- **2D** pose（由车轮里程计使用）：2D 姿势包含机器人在地平面上的位置和方向以及该姿势的协方差。发送此 2D 姿势的消息实际上表示 3D 姿势，但 z、滚动和俯仰被简单地忽略。
+
+`imu_data` （[`sensor_msgs/Imu`](http://docs.ros.org/en/api/sensor_msgs/html/msg/Imu.html))
+
+- 3D orientation（由 IMU 使用）：**3D 方向**提供有关机器人底架相对于世界参考系的滚动角、俯仰角和偏航角的信息。横滚角和俯仰角被解释为绝对角度（因为 IMU 传感器具有重力参考），偏航角被解释为相对角度。协方差矩阵指定了方向测量的不确定度。`robot_pose_ekf` 在仅接收有关此主题的消息时不会启动;它还需要有关“VO”或“Odom”主题的消息。
+
+`vo`（[`nav_msgs/`里程计](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html))
+
+- **3D** pose（由视觉里程计使用）：3D pose表示机器人的完整位置和方向以及该pose的协方差。当传感器仅测量 3D 姿势的一部分时（例如，车轮里程计仅测量 2D 姿势），只需在未实际测量的 3D pose部分上指定较大的协方差即可。
+
+`robot_pose_ekf`节点不要求所有三个传感器源始终可用。每个源都给出了pose估计值和协方差。这些源以不同的速率和不同的延迟运行。源可以随时间推移出现和消失，节点将自动检测并使用可用的传感器。若要添加自己的传感器输入，请查看[添加 GPS 传感器教程](http://wiki.ros.org/robot_pose_ekf/Tutorials/AddingGpsSensor)
+
+③Published Topics
+
+`robot_pose_ekf/odom_combined` （[geometry_msgs/PoseWithCovarianceStamped](http://docs.ros.org/en/api/geometry_msgs/html/msg/PoseWithCovarianceStamped.html))
+
+- 过滤器的输出（估计的 3Drobot pose）
+
+④提供的` tf` 转换
+
+```
+odom_combined`→`base_footprint
+```
+
+**工作原理**
+
+Poes解释
+
+所有向滤波器节点发送信息的传感器源都可以有自己的世界参考系，并且每个*世界*参考系都可以随时间任意漂移。因此，不同传感器发送的**absolute Pose**无法相互比较。该节点使用每个传感器的**relative pose differences**来更新扩展的卡尔曼滤波器。
+
+协方差解释(Covariance interpretation)
+
+随着机器人四处移动，其在世界参考中pose的不确定性越来越大。随着时间的流逝，协方差将无限增长。因此，发布pose本身的协方差是没有用的，相反，传感器源会发布协方差如何随时间变化，即速度上的协方差。*请注意，使用对世界的观察（例如，测量到已知墙壁的距离）将减少机器人姿势的不确定性;然而，这是定位，而不是里程计。*
+
+Timing
+
+想象一下，机器人姿势过滤器上次更新的时间是t_0。在*到达每个*传感器的至少一次测量值且时间戳晚于 t_0 之前，节点不会更新机器人姿势过滤器。例如，当在时间戳t_1 > t_0的 `odom` 主题和时间戳t_2 > t_1 > t_0的 `imu_data` 主题上收到消息时，过滤器现在将更新到有关所有传感器的信息可用的最新时间，在本例中为时间t_1。直接给出t_1处的 `odom` 位姿，通过对 t_1 和 t_0 之间的 `imu` 位姿进行线性插值得到 t_2 处的 `imu `位姿。机器人姿势过滤器使用` odom `和` imu `的相对姿势进行更新，介于 t_0 和 t_1 之间。
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/robot_pose_ekfaction=AttachFile&do=get&target=robot_pose_ekf.png" alt="robot_pose_ekf.png" style="zoom:50%;" />
+
+上图显示了PR2机器人从给定的初始位置（绿点）开始，驱动并返回初始位置时的实验结果。完美的里程计 x-y 图应显示精确的闭环。蓝线表示车轮里程计的输入，蓝点表示估计的结束位置。红线表示`robot_pose_ekf`的输出，它结合了车轮里程计和`imu`的信息，红点是估计的结束位置。
+
+包裹状态
+
+①稳定性
+
+这个包的代码库已经过很好的测试，并且已经稳定了很长时间。然而，随着消息类型的演变，ROS API 一直在变化。在未来的版本中，ROS API 可能会再次更改为简化的单主题界面（请参阅下面的路线图）。
+
+②路线图
+
+- 该滤波器目前设计用于我们在 PR2 机器人上使用的三个传感器信号（车轮里程计、`imu` 和 `vo`）。我们计划使这个包更加通用：未来的版本将能够监听“n”个传感器源，所有源都发布（[`nav_msgs/`里程计](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html)）消息。每个源都将在里程计消息中设置 3D 姿势的协方差，以指定它实际测量的 3D 姿势的哪一部分。
+- 我们想将速度添加到扩展卡尔曼滤波器的状态中。
+
+#### 3.2.3 麦轮底盘运动学解算
+
+> Contributors: 洪佳
+
+> 参考文献：
+>
+> [10] [ROS机器人学习——麦克纳姆轮运动学解算-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/oXiaoLingTong/article/details/120198677)
+
+##### 3.2.3.1 麦轮概述
+
+RM战车所用的轮子均为麦克纳姆轮，这种轮子安装方式与普通轮子无异，可安装于平行轴上，但是麦克纳姆轮可以实现全向移动，即前后运动、水平移动、绕中心自转。正因为以上优点，许多工业上的全向移动平台都会应用这种轮子。缺点也有，就是不耐磨，需要定期更换。
+
+（全向轮与麦克纳姆轮的共同点在于他们都由两大部分组成：轮毂和辊子（roller）。轮毂是整个轮子的主体支架，辊子则是安装在轮毂上的鼓状物。全向轮的轮毂轴与辊子转轴相互垂直，而麦克纳姆轮的轮毂轴与辊子转轴呈 45° 角。理论上，这个夹角可以是任意值，根据不同的夹角可以制作出不同的轮子，但最常用的还是这两种。）
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126010416033.png" alt="image-20240126010416033" style="zoom:33%;" />
+
+##### 3.2.3.2 麦轮安装
+
+同轴安装，分为左旋和右旋两种
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126015014818.png" alt="image-20240126015014818" style="zoom:33%;" />
+
+安装方式如下图，分别为：**X-正方形（X-square）、X-长方形（X-rectangle）、O-正方形（O-square）、O-长方形（O-rectangle）**
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126015110765.png" alt="image-20240126015110765" style="zoom:33%;" />
+
+- X-正方形：轮子转动产生的力矩会经过同一个点，所以 yaw 轴无法主动旋转，也无法主动保持 yaw 轴的角度。
+- X-长方形：轮子转动可以产生 yaw 轴转动力矩，但转动力矩的力臂一般会比较短。
+- O-正方形：四个轮子位于正方形的四个顶点，平移和旋转都没有任何问题。
+- O-长方形：轮子转动可以产生 yaw 轴转动力矩，而且转动力矩的力臂也比较长。是最常见的安装方式。
+
+##### 3.2.3.3 运动学模型
+
+**基础知识**
+
+坐标系统
+
+使用右手定义,对于ROS机器人，如果以它为坐标系的原点，那么
+
+|  轴  | 方位 |
+| :--: | :--: |
+| x轴  | 前方 |
+| y轴  | 左方 |
+| z轴  | 上方 |
+
+旋转运动
+
+使用右手定义：
+
+围绕 z轴正旋转 是 逆时针旋转
+
+测量单位
+
+ROS使用公制 ：
+
+线速度：m/s
+
+角速度：rad/s
+
+底盘运动学解算
+
+以下以**O-长方型**安装方式进行解算
+
+- 底盘中心
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013124388.png" alt="image-20240126013124388" style="zoom:33%;" />
+
+- 麦轮轴心（取右上角麦轮即一号轮子分析）
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013249796.png" alt="image-20240126013249796" style="zoom:33%;" />
+
+
+
+逆运动学解算
+
+逆运动学模型（inverse kinematic model）得到的公式可以根据底盘的运动状态解算出四个轮子的速度
+
+①轮子轴心速度
+
+![image-20240126013514833](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013514833.png)
+
+②辊子方向的速度分量v1∥
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013654586.png" alt="image-20240126013654586" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013846204.png" alt="image-20240126013846204" style="zoom: 67%;" />
+
+③轮子转速
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014229717.png" alt="image-20240126014229717" style="zoom:33%;" />
+
+![image-20240126014243401](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014243401.png)
+
+④整合得出底盘四个轮子转速，即底盘运动学模型
+
+![image-20240126014625107](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014625107.png)
+
+
+
+正运动学解算
+
+正运动学模型（forward kinematic model）让我们可以通过四个轮子的速度，计算出底盘的运动状态。可以直接根据逆运动学模型中的三个方程解出来。
+
+转换为底盘坐标系下对时间求积分即为里程计变化量
+
+##### 3.2.3.4 代码实现
+
+代码参考：http://t.csdnimg.cn/ldXqr
+
+#### 3.2.4 catkin_make编译
+
+> Contributors: 洪佳
+
+> 参考文献：
+>
+> [11] [ROS从入门到精通系列（五）catkin详解与catkin_make编译-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/hhaowang/article/details/101691986)
+
+一定要搞明白`make/makefile/catkin_make/cmake/Cmakelist`的关系,本质是链接文件去生成可执行文件
+
+系统学习大家还是要自己学，主要给大家提供思路，学习大纲还有遇到的一些问题的解决方法，少走弯路
+
+##### 3.2.4.1 catkin编译系统
+
+对于源代码包，我们只有编译才能在系统上运行。而Linux下的编译器有``gcc、g++``，随着源文件的增加，直接用``gcc/g++``命令的方式显得效率低下，人们开始用`Makefile`来进行编译。然而随着工程体量的增大，`Makefile`也不能满足需求，于是便出现了`Cmake`工具。`CMake`是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。对于ROS这样大体量的平台来说，就采用的是`CMake`，并且ROS对`CMake`进行了扩展，于是便有了Catkin编译系统。
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129164912808.png" alt="image-20240129164912808" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129164930341.png" alt="image-20240129164930341" style="zoom:33%;" />
+
+其实早期是`rosbuild`，目前还支持使用，但是`ros`的核心软件包都已经被转换为Catkin
+
+##### 3.2.4.2 catkin_make 结构和特点
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165146937.png" alt="image-20240129165146937" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165635113.png" alt="image-20240129165635113" style="zoom:33%;" />
+
+##### 3.2.4.3 catkin_make编译流程
+
+- 建立工作空间
+
+  <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165753173.png" alt="image-20240129165753173" style="zoom:50%;" />
+
+- 编译
+
+  <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165829990.png" alt="image-20240129165829990" style="zoom:50%;" />
+
+source用来配置环境，不然`roslaunch`找不到对应的包
+
+##### 3.2.4.4 catkin_make文件系统
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70.png" alt="img" style="zoom: 33%;" />
+
+##### 3.2.4.5 package
+
+package也是ROS源代码存放的地方，任何ROS的代码无论是C++还是Python都要放到package中，这样才能正常的编译和运行。
+
+一个package可以编译出来多个目标文件（ROS可执行程序、动态静态库、头文件等等）。
+
+**package结构**
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70-1706519610932-6.png" alt="img" style="zoom:33%;" />
+
+**package指令**
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70-1706519738476-12.png" alt="img" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129171704680.png" alt="image-20240129171704680" style="zoom:33%;" />
+
+##### 3.2.4.6 常见问题
+
+点进源代码包后，把`build/devel`两个包删了，在当前路径下进入终端
+
+```
+catkin_make
+```
+
+如果没有error，记得source配置环境，编译成功‘
+
+以下是一些问题现象和解决方案
+
+**问题①**
+
+```
+CMake Error at /opt/ros/noetic/share/catkin/cmake/catkinConfig.cmake:83 (find_package): Could not find a package configuration file provided by "catkin_virtualenv" with any of the following names:
+
+    catkin_virtualenvConfig.cmake
+    catkin_virtualenv-config.cmake
+  Invoking "make cmake_check_build_system" failed
+```
+
+这是由于缺少包导致的
+
+**解决方案：**
+
+在终端输入：
+
+```
+sudo apt-get install ros-noetic-catkin-virtualenv
+```
+
+注意：
+
+1.error里面”_”下划线在解决代码里面用“-”分割符号
+
+2.Ubuntu20.04是noetic        Ubuntu18.04是melodic
+
+3.有可能缺少好几个包，catkin_make多编译几次再下载几次包
+
+**问题②**
+
+在下载的时候
+
+```
+E:无法定位到软件包
+```
+
+原因很多，网络连接问题、`ros`软件源、apt源过期等问题
+
+**解决方案：**
+
+查一遍list,这个很麻烦需要耐心，我没试过谨慎试
+
+换源镜像
+
+http://t.csdnimg.cn/o9dce
+
+#### 3.2.5 SLAM四种算法建图对比
+
+> Contributors: 洪佳
+
+> 参考文献：
+>
+> [12] [2D激光slam四种算法建图效果对比_slam建图算法-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/m0_73791170/article/details/127339058?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"127339058"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+
+SLAM——同步定位与建图（Simultaneous Localization and Mapping，SLAM）是在上世纪80年代被提出的，起初发展的算法皆采用激光雷达作为定位与建图的工具，随着稀疏性问题的解决，相机也被引入SLAM领域，如今SLAM技术在向多传感器融合的方向发展，激光雷达、深度相机、IMU惯导等正成为SLAM技术的常见解决方案。
+
+##### 3.2.5.1 Gmapping
+
+一种用于建立**二维地图的概率算法**，它基于激光雷达数据和机器人的运动信息，通过**蒙特卡洛方法**进行粒子滤波定位和地图构建。
+
+这个部分写得详细一点，因为我们比赛建图使用的就是`Gmapping`算法,从理论到实际
+
+（后面三种实际操作暂无，为了统一，参考构建地图都来自一篇文章）
+
+**概述**
+
+其算法框架是基于RBPF粒子滤波算法，先进行定位再进行建图
+
+RBPF：http://t.csdnimg.cn/h4PfS，对于建图而言，简单来说就是通过算法迭代，在粒子群中选出最优粒子，使用激光雷达数据和所关联的历史轨迹来绘制地图。其**定位和建图是分离的**，每个粒子都携带它们自身的地图（不适合大场地建图，但是我们比赛场地面积用`Gmapping`建图问题不大）。
+
+|           RBPF问题           |            `Gmapping`改进            |
+| :--------------------------: | :----------------------------------: |
+| 粒子多——计算量大、内存消耗大 | 改进提议分布（考虑里程计、观测信息） |
+|      频繁执行——粒子退化      |       选择性重采样（设定阈值）       |
+
+**优缺点**
+
+- 优点
+
+`Gmapping`可以实时构建室内地图，在构建小场景地图所需的计算量较小且精度较高。相比Hector SLAM对激光雷达频率要求低、鲁棒性高.
+
+而相比Cartographer在构建小场景地图时，`Gmapping`不需要太多的粒子并且没有回环检测因此计算量小于Cartographer而精度并没有差太多。`Gmapping`有效利用了车轮里程计信息，这也是`Gmapping`对激光雷达频率要求低的原因：里程计可以提供机器人的位姿先验。而Hector和Cartographer的设计初衷不是为了解决平面移动机器人定位和建图，Hector主要用于救灾等地面不平坦的情况，因此无法使用里程计。而Cartographer是用于手持激光雷达完成SLAM过程，也就没有里程计可以用。
+
+- 缺点
+
+随着场景增大所需的粒子增加，因为每个粒子都携带一幅地图，因此在构建大地图时所需内存和计算量都会增加。因此不适合构建大场景地图。
+
+没有**回环检测**(http://t.csdnimg.cn/8Vh3X)，因此在回环闭合时可能会造成地图错位，虽然增加粒子数目可以使地图闭合但是以增加计算量和内存为代价。所以不能像Cartographer那样构建大的地图。
+
+`Gmapping`和Cartographer一个是基于滤波框架SLAM另一个是基于优化框架的SLAM，两种算法都涉及到时间复杂度和空间复杂度的权衡。`Gmapping`牺牲空间复杂度保证时间复杂度，这就造成`mapping`不适合构建大场景地图。翻看Cartographer算法，优化相当于地图中只用一个粒子，因此存储空间比较`Gmapping`会小很多倍，但计算量大;优化图需要复杂的矩阵运算。
+
+**建图实操**
+
+1)软硬件准备：
+
+`rplidar`及其驱动；navigation和`gmapping`等package;`tf`变换关系
+
+很多开源的相关功能包，这是SLAM导航核心技术的内容，随便查
+
+编译功能包，使系统识别ROS工作空间
+
+下载`gmapping`·是为了能够在自己的小车运行，因此必须按照小车的实际情`gmapping`算法中的**参数进行配置**
+
+```
+touch gmapping_robot.launch
+```
+
+2)笔记本和主控板连接
+
+这个步骤看情况，直接接显示屏或者看小屏也可以
+
+可以`ssh`远程操控，使用`Nomachine`等工具
+
+3)操作指令
+
+```
+roslaunch turn_on_什么机器人 mapping.launch  //建图命令
+rviz     //可视化
+roslaunch  机器人 keyboard_teleop.launch   //控制命令
+roslaunch turn_on_什么机器人 map_saver.launch   //保存地图
+```
+
+**注意：在单独启动rviz时，需要先启动master节点：`roscore`，然后另启一终端运行：`rosrun rviz rviz`。但是对.launch文件，运行之后，若master节点没有启动会自动去启动它，因此在第二步运行rviz时，master节点已经被启动了，无需再次运行`roscore`。
+每次打开rviz都要重新配置很麻烦，可以使用ctrl+s命令保存当前配置，保存到路径`opt/ros/melodic/share/rviz/default.rviz`，若提示无法写入该文件，则是当前文件权限为“only read”，启动一个终端，输入并运行命令`sudo chmod 777 /opt/ros/melodic/share/rviz/default.rviz`，然后再此尝试`ctrl+s`保存即可成功**
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172132705.png" alt="image-20240127172132705" style="zoom:67%;" />
+
+4)灰度地图和代价地图
+
+建图得到**灰度地图**，其数值范围为[-1,100]，其中“-1”代表未知区域，基本是`rviz`的背景色，“0“代表自由区域，为白色，”100“代表完全占用，为黑色，实际上在建图时只有”-1“、”0“、”100“三种情况，因为建图过程中雷达探测到了障碍物一般就是确定的，不会取0-100之间的数值。
+
+到了执行导航功能时，系统的地图又有所不同，此时使用的并不完全是使用建图的地图，而是使用代价地图。代价地图的取值范围是[0,254]，数值越大，表示占用程度越高，导航时小车越要远离。
+
+代价地图的生成过程可以参考此文章：https://blog.csdn.net/qq_35635374/article/details/120874817（到了导航部分再细说），总而言之就是对之前建好的静态层地图和雷达运行探测到的障碍层地图按照膨胀规则进行膨胀和合并，生成数值在[0,254]之间的代价地图，导航时按照地图方格中的数值进行路径规划
+
+##### 3.2.5.2 Hector
+
+`Hector`算法框架是基于高斯牛顿
+（Hector 在机器人快速转向时很容易发生错误匹配，建出的地图发生错位，原因主要是优化算法容易陷入局部最小值）
+
+优点：不需要里程计，适应于空中或者路面不平坦的环境
+
+缺点：旋转过快易发生漂移，无回环检测
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172707169.png" alt="image-20240127172707169" style="zoom: 50%;" />
+
+##### 3.2.5.3 Karto
+
+`Karto`算法框架是基于图优化
+
+优点：这是首个基于图优化的开源算法，利用高度优化和非迭代平方根法分解从而进行稀疏化解耦求解
+
+缺点：无法实时构建子图，耗费时间
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172725405.png" alt="image-20240127172725405" style="zoom:50%;" />
+
+##### 3.2.5.4 Cartographer
+
+`Cartographer`算法框架是基于图优化cartographer在不同环境下，调整参数和传感器配置，就能工作
+大部分数据集，cartographer表现更优。ActiveSubmaps2D类中的submaps_列表实际最多只两个submap，一个认为是old_map，另一个认为是new_map，类似于滑窗操作。
+
+当new_map插入激光scan的个数达到阈值时，则会将old_map进行结束，并且不再增加新的scan。同时将old_map进行删除，将new_map作为`oldmap`，然后重新初始化一个新的submap作为`newmap`。其具体实现可看代码注解，较为简单。首先回环优化，我们需要检测到回环，再进行优化。如何检测回环呢，前文也提到过，如果当前的scan和所有已创建完成的submap中的某个laser scan的位姿在距离上足够近，那么通过某种 scan match策略就会找到该闭环。
+
+这里为了减少计算量，提高实时回环检测的效率，Cartographer应用了branch and bound(分支定界)优化方法进行优化搜索，如果得到一个足够好的匹配，到此处，回环检测部分已经结束了，已经检测到了回环得存在。接下来要根据当前scan的位姿和匹配到得最接近的submap中的某一个位姿来对所有的submap中的位姿进行优化，即使残差E最小。
+
+优点：适应于低成本激光雷达，加速回环检测，实时性强
+
+缺点：在几何对称环境中，易回环出错
+
+![image-20240127172736432](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172736432.png)
+
+#### 3.2.6 pgm 转 posegraph
+
+> Contributors: 唐锦梁
+
+##### 3.2.6.1 精修编辑 pgm 地图
+
+> 参考文献：
+>
+> [14] [ROS—PGM地图文件的编辑 | 闫金钢的Blog - https://yanjingang.com/](https://yanjingang.com/blog/?p=8597)
+
+根据需求添加或删除围挡。最重要的是将障碍物完全涂黑，障碍物内部不要保留任何白色区域！
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214091419.png" style="zoom: 25%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250217152911916.png" alt="image-20250217152911916" style="zoom: 25%;" />
+
+##### 3.2.6.2 使用 Ogm2Pgbm 获取带有点云和位姿的 rosbag
+
+安装过程如下
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+```
+
+可以运行以下命令验证Docker是否安装成功
+
+```bash
+sudo docker run hello-world
+```
+
+(可选)(强烈建议) 添加当前用户到 `docker` 组, 这样就无需每次使用 `sudo` 来运行docker命令
+
+```bash
+sudo usermod -aG docker $USER
+
+# 运行完成后注销登录或重启即可生效(建议立刻重启)
+```
+
+(可选) 安装Docker Compose
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# 验证安装情况
+docker-compose --version
+```
+
+**使用 Docker 获取功能包**
+
+获取镜像, 该镜像体积较大, 拉取和解压过程较长
+
+```bash
+sudo docker pull lihanchen2004/ogm2pgbm:latest
+```
+
+克隆仓库，仓库中 `/Ogm2Pgbm/workspace/map/` 将会被映射到 Docker 容器中，方便替换地图
+
+```bash
+git clone https://github.com/LihanChen2004/Ogm2Pgbm
+cd Ogm2Pgbm
+```
+
+安装 `nvidia-container-toolkit` , 注意需要提前在NVIDIA官网下载并安装驱动 [NVIDIA Drivers for Linux](https://www.nvidia.com/en-us/drivers/)
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+```bash
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+```
+
+(建议) 开启独显直连, 按下图完成后重启生效
+![[Pasted image 20250214104010.png]]
+
+基于 `lihanchen2004/ogm2pgbm:latest` 创建容器
+
+```bash
+# 注意如果到现在为止还没重启过, 建议先重启一次在运行以下命令 :)
+sudo ./autorun.sh
+```
+
+**启动功能包**
+
+将你需要转换的 `.pgm` 和 `.yaml` 文件复制到宿主机的 `Ogm2Pgbm/workspace/map/` 目录中
+
+> 以下操作均在 Docker容器中完成
+
+请确保当前终端已经进入 Docker container 中
+进入终端后会出现一个绿色的→箭头, 如下图
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214105219.png" style="zoom: 33%;" />
+
+```bash
+MAP_NAME=rmuc_2025
+
+roslaunch ogm2pgbm ogm2pgbm.launch map_file:=/root/workspace/map/$MAP_NAME.yaml record:=true
+```
+
+> 命令行可能会输出一大堆类似 `# QXcbConnection: XCB error: 2 (BadValue)` 的报错, 此现象疑似由Qt框架引起, 所以建议不要拖动弹出的RVIZ窗口, 不过貌似影响不大而且触发具有偶然性, 多运行几次就好了
+
+运行上述命令后会启动RVIZ
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214105348-1739778855212-7.png" style="zoom: 25%;" />
+等待3~4分钟, 程序执行完毕后会在终端输出 `done!`
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214105744.png" style="zoom:50%;" />
+随后 `Ctrl + C` 终止程序, 程序将自动把 rosbag 保存至 `/root/.ros/ogm2pgbm_sensordata.bag` (容器内部路径)
+
+**将 rosbag 下载到宿主机**
+
+> 以下操作均在宿主机中进行
+
+1. 查看 `CONTAINER_ID` , 运行 `autorun.sh` 确保容器还在运行
+
+   ```bash
+   docker ps
+   ```
+
+2. 保存 rosbag 到宿主机
+
+   1. 注意修改 `CONTAINER_ID` !!!
+   2. 以下命令将容器的 `rosbag` 保存到宿主机的 `Download` 目录
+
+   ```bash
+   CONTAINER_ID=abcdef123456
+   CONTAINER_PATH=/root/.ros/ogm2pgbm_sensordata.bag
+   DST_PATH=~/Downloads/
+   
+   docker cp $CONTAINER_ID:$CONTAINER_PATH $DST_PATH
+   ```
+
+##### 3.2.6.3 将 .bag 转换为 .db3
+
+> 以下操作均在宿主机中进行
+
+在 ROS1 中，rosbag 的文件后缀是 .bag，它是一种基于二进制的 ROS 消息存储格式。ROS2 对 rosbag 格式进行了一些改进和扩展，采用了一种基于 SQLite 的数据库格式，包括一个 .db3 数据库和一个 .yaml 文件
+[ternaris | rosbags](https://gitlab.com/ternaris/rosbags)
+
+安装转换包
+
+```bash
+sudo pip install rosbags
+```
+
+```bash
+rosbags-convert --src ogm2pgbm_sensordata.bag \
+  --dst RMUC.db3 \
+  --src-typestore empty \
+  --dst-typestore ros2_humble \
+  --exclude-topic /rosout /robot/map /rosout_agg
+```
+
+##### 3.2.6.4 播放 rosbag 并制图
+
+> 以下操作均在宿主机中进行
+
+**准备**
+
+下载 rviz 配置文件，便于可视化![[ogm2pgbm.rviz]]
+
+**启动**
+
+1. 启动 `slam_toolbox` 准备建图
+
+   ```bash
+   ros2 run slam_toolbox async_slam_toolbox_node --ros-args \
+     -p use_sim_time:=True \
+     -p odom_frame:=robot_odom \
+     -p base_frame:=robot_base_link \
+     -p map_frame:=robot_map \
+     -p do_loop_closing:=False \
+     -p max_laser_range:=10.0
+   ```
+
+2. 播放 `rosbag`
+
+   ```bash
+   ros2 bag play RMUC.db3
+   ```
+
+3. 启动 rviz2 可视化
+
+   1. 注意修改 rviz2 配置文件路径
+
+      ```bash
+      rviz2 -d ~/Downloads/ogm2pgbm.rviz 
+      ```
+
+**保存 .posegraph 地图**
+
+待 rosbag 播放完毕，在 rviz2 界面左侧 `SlamToolBoxPlugin` 中设置好文件名，点击 `Serialize Map` 即可保存 `.posegraph+.data` 地图；点击 `Save Map` 可保存 `.pgm+.yaml` 地图 (保存在 `Downloads` 目录下)
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214170405.png" style="zoom: 25%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/Pasted image 20250214170427.png" style="zoom:33%;" />
+
+<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20250217153213246.png" alt="image-20250217153213246" style="zoom: 25%;" />
+
+### 3.3 cmake
+
+cmake主要是用来方便管理c++工程文件，链接所需要的库依赖，再编译生成可执行文件
+
+控制从源码到可执行文件的整个构建流程，包括编译、链接、测试等步骤。它还支持分布式编译，加速大项目的编译速度。
+
+#### 3.3.1 常见问题
+
+1.`target_compile_definitions` 的宏定义内容在VSCode编辑器中中无法识别
+
+**解决方案**
+
+在 `.vscode/c_cpp_properties.json` 中新增下列参数
+
+参考自 [Stack Overflow](https://stackoverflow.com/questions/74397633/vscode-intellisense-cannot-understand-cmake-add-definitions)
+
+```json
+{
+    "configurations": [
+        {
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+}
+```
+
+#### 3.3.2 直接编译C++工程文件
+
+* example：
+
+``` cmake
+set(CMAKE_CXX_STANDARD 20)
+
+Project(ApproximateDRAMandSRAM)
+
+find_package(OpenCV REQUIRED)
+
+message(STATUS "Open library status: ")
+message(STATUS "> version: ${OpenCV_VERSION} ")
+message(STATUS "libraries: ${OpenCV_LIBS} ")
+message(STATUS "> include: ${OpenCV_INCLUDE_DIRS}  ")
+
+find_package(FMT REQUIRED)
+
+
+
+include_directories(${OpenCV_INCLUDE_DIRS}) 
+
+aux_source_directory(. ALL_SRCS)
+add_executable(main ${ALL_SRCS})
+
+target_link_libraries(main
+PUBLIC 
+${OpenCV_LIBS}
+fmt::fmt
+)
+```
+
+* 把所有的cpp、hpp文件都放在当前目录下，直接生成一个可执行文件main即可
+
+#### 3.3.3 ROS1平台上编译
+
+##### 3.3.3.1 需求：编译一个rm__common功能包，作为动态链接库给其他功能包使用
+
+* add_definitions(-Wall -Werror -Wno-enum-compare)  
+
+  * **确保warning不会被省略**
+
+ * find_package(Eigen3 REQUIRED)  
+
+   * **寻找外部库**
+
+* find_package(catkin REQUIRED
+      COMPONENTS
+      roscpp
+      tf) 
+
+  * **寻找ROS的组件**
+
+* catkin_package(
+
+  * INCLUDE_DIRS  
+
+    * **使得其他依赖于该包的包能够找到并使用这个包的资源**
+
+  * include  
+
+    *  **当前的包路径**
+
+  * ${EIGEN3_INCLUDE_DIR}  
+
+    * **外部库的路径**
+
+  * CATKIN_DEPENDS  
+
+    * **ROS包的组件**
+      tf
+      rm_msg
+
+    * DEPENDS  
+
+      ***外部库**
+
+      Eigen3
+
+      LIBRARIES
+
+      ***LIBRARIES 参数是用来声明当前包编译出来的库，供其他包使用**
+
+      rm_common  
+
+      ）
+
+* include_directories( 
+
+          include
+            
+          ${catkin_INCLUDE_DIRS}
+            
+          ${EIGEN3_INCLUDE_DIR})
+
+  *  **设置编译器的头文件搜索路径，编译该包需要的头文件**        
+
+* file(GLOB_RECURSE sources "src/*.cpp" "src/decision/*.cpp" "src/filter/*.cpp")
+
+* add_library(rm_common SHARED ${sources})  
+
+  * **编译生成动态链接库**
+
+* add_executable(test_kalman test/test_kalman_filter.cpp)
+
+* target_link_libraries(rm_common ${catkin_LIBRARIES})
+
+  * **将 rm_common 库与 Catkin 的库依赖链接起来**
+
+* target_link_libraries(test_kalman rm_common ${catkin_LIBRARIES})
+
+  * **之前通过 add_library 命令定义的 rm_common 库**
+
+* add_dependencies(rm_common rm_msgs_generate_messages_cpp)
+
+  * **确保在 rm_common 库编译之前，rm_msgs_generate_messages_cpp 目标必须先完成**
+
+* **汇总：**
+
+``` cmake
+project(rm_common)
+
+## Use C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+## By adding -Wall and -Werror, the compiler does not ignore warnings anymore,
+## enforcing cleaner code.
+add_definitions(-Wall -Werror -Wno-enum-compare)
+
+find_package(Eigen3 REQUIRED)
+
+find_package(catkin REQUIRED
+        COMPONENTS
+        roscpp
+        tf
+        rm_msgs
+        geometry_msgs
+        control_msgs
+        controller_manager_msgs
+        imu_complementary_filter
+        imu_filter_madgwick
+        realtime_tools
+        dynamic_reconfigure
+        )
+
+catkin_package(
+        INCLUDE_DIRS   ##使得其他依赖于该包的包能够找到并使用这个包的资源
+        include
+        ${EIGEN3_INCLUDE_DIR}
+        CATKIN_DEPENDS
+        tf
+        rm_msgs
+        geometry_msgs
+        control_msgs
+        controller_manager_msgs
+        imu_complementary_filter
+        imu_filter_madgwick
+        roscpp
+        dynamic_reconfigure
+        DEPENDS
+        LIBRARIES
+        rm_common
+)
+
+include_directories(  ##设置编译器的头文件搜索路径
+        include
+        ${catkin_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR}
+)
+
+file(GLOB_RECURSE sources "src/*.cpp" "src/decision/*.cpp" "src/filter/*.cpp")
+
+add_library(rm_common SHARED ${sources})
+#add_executable(test_traj test/test_traj.cpp)
+add_executable(test_kalman test/test_kalman_filter.cpp)
+
+target_link_libraries(rm_common ${catkin_LIBRARIES})
+#target_link_libraries(test_traj rm_common ${catkin_LIBRARIES})
+target_link_libraries(test_kalman rm_common ${catkin_LIBRARIES})
+
+# Fix rm_msgs generation problem
+# See https://answers.ros.org/question/73048
+add_dependencies(rm_common rm_msgs_generate_messages_cpp)
+
+#############
+## Install ##
+#############
+
+# Mark executables and/or libraries for installation
+install(
+        TARGETS ${PROJECT_NAME}
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# Mark cpp header files for installation
+install(
+        DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.h"
+)
+
+# Mark other files for installation
+#install(
+#        DIRECTORY doc
+#        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
+
+#############
+## Testing ##
+#############
+
+if (${CATKIN_ENABLE_TESTING})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+    ## Add gtest based cpp test target and link libraries
+    catkin_add_gtest(lqr_test
+            test/unit_test_lqr.cpp
+            test/LqrTest.cpp)
+    target_link_libraries(lqr_test rm_common)
+endif ()```
+```
+
+* package.xml:
+
+``` xml
+<package format="2">
+    <name>rm_common</name>
+    <version>0.1.20</version>
+    <description>The rm_common package</description>
+
+    <maintainer email="liaoqiayuan@gmail.com">qiayuan</maintainer>
+
+    <license>BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>roscpp</depend>
+
+    <depend>tf</depend>
+    <depend>geometry_msgs</depend>
+    <depend>realtime_tools</depend>
+    <depend>rm_msgs</depend>
+    <depend>imu_complementary_filter</depend>
+    <depend>imu_filter_madgwick</depend>
+    <depend>dynamic_reconfigure</depend>
+    <depend>eigen</depend>
+    <depend>control_msgs</depend>
+    <depend>controller_manager_msgs</depend>
+
+    <!-- The export tag contains other, unspecified, tags -->
+    <export>
+        <!-- Other tools can request additional information be placed here -->
+
+    </export>
+</package>
+```
+
+##### 3.3.3.2 ROS1上生成自定义消息类型
+
+* 在package.xml添加两项：
+
+```xml
+<build_depend>message_generation</build_depend>
+<exec_depend>message_runtime</exec_depend>
+```
+
+* 在cmakelists里添加以下内容：
+
+```cmake
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  message_generation
+)
+add_message_files(
+  FILES
+  MyCustomMsg.msg
+)
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+catkin_package(
+  CATKIN_DEPENDS message_runtime
+)
+
+```
+
+#### 3.3.4 ROS2 平台上编译
+
+##### 3.3.4.1 需求：编译一个rm__common功能包，作为动态链接库给其他功能包使用（对比ROS1，大同小异）
+
+* example：
+
+```cmake
+project(rm_common)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# # Find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(rm_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+include_directories(
+  include
+)
+# Define the sources for the rm_common library
+file(GLOB_RECURSE sources "src/*.cpp" )
+
+# Create the rm_common shared library
+add_library(rm_common SHARED ${sources})
+# 链接生成rm_common动态链接库所需要的库
+ament_target_dependencies(rm_common
+  rclcpp
+  std_msgs
+  rm_msgs
+  builtin_interfaces
+)
+# 这里导出库文件以便其他包能够链接到 rm_common 库
+ament_export_targets(export_rm_common HAS_LIBRARY_TARGET)
+install(
+  TARGETS rm_common
+  EXPORT export_rm_common
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+#导出目标: ament_export_targets 告诉构建系统将 rm_common 库导出，以便其他包可以通过 find_package() 使用该库。
+#安装规则: install() 定义了如何将 rm_common 库的各类文件（如静态库、动态库、可执行文件）安装到系统中指定的目录。
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION include/${PROJECT_NAME}/
+  FILES_MATCHING PATTERN "*.h"
+)
+#这一部分的安装操作是针对头文件的安装。它将 include/${PROJECT_NAME}/ 目录下的所有匹配 *.h 的头文件复制到目标安装位置。
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+ament_export_include_directories(include)
+ament_export_dependencies(rclcpp std_msgs rm_msgs builtin_interfaces)#除了ament_cmake，其他的都导出
+# Export package dependencies
+ament_package()
+```
+
+* package.xml:
+
+```xml
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rm_common</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="1779252249@qq.com">minipc01</maintainer>
+  <license>TODO: License declaration</license>
+  <!-- Build dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>rm_msgs</depend>
+  <depend>builtin_interfaces</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+
+##### 3.3.4.2 其他功能包要使用rm_common包
+
+* example
+
+```cmake
+project(rm_hw)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(rm_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rm_common REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(geometry_msgs REQUIRED)
+# 添加include路径
+include_directories(include
+${rm_common_INCLUDE_DIRS}  # 添加这一行
+${EIGEN3_INCLUDE_DIR}
+)
+
+# 将源文件添加到可执行目标
+add_executable(rm_robot_hw_node
+  src/hardware_interface.cpp  # 你的源文件
+  src/socketcan.cpp
+  src/can_bus.cpp
+)
+
+# 链接需要的库
+ament_target_dependencies(rm_robot_hw_node
+  rclcpp
+  std_msgs
+  rm_msgs  
+  builtin_interfaces
+  rm_common
+  Eigen3
+  geometry_msgs
+)
+
+# 安装可执行文件
+install(TARGETS rm_robot_hw_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
+```
+
+* package.xml
+
+```xml
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rm_hw</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="1779252249@qq.com">minipc01</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <depend>eigen</depend>
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>rm_msgs</depend>
+  <depend>rm_common</depend>
+  <depend>builtin_interfaces</depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+
+##### 3.3.4.3 在ROS2中如果要生成自定义消息类型
+
+* example
+
+```cmake
+cmake_minimum_required(VERSION 3.8)
+project(rm_msgs)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(std_msgs REQUIRED)
+# 生成自定义消息接口
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/ActuatorState.msg"
+  "msg/LpData.msg"
+  DEPENDENCIES builtin_interfaces std_msgs
+)
+
+# 导出运行时依赖
+ament_export_include_directories(include)
+ament_export_dependencies(rosidl_default_runtime std_msgs builtin_interfaces)
+
+
+# 安装消息文件以便其他包使用
+install(
+  DIRECTORY msg
+  DESTINATION share/${PROJECT_NAME}
+)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
+```
+
+* package.xml
+
+```xml
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rm_msgs</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="1779252249@qq.com">minipc01</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <depend>std_msgs</depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <depend>builtin_interfaces</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+
+### 3.4 yolov8
 
 > Contributors: 程英杰
 
-#### 3.3.1 目标检测与语义分割的区别
+#### 3.4.1 目标检测与语义分割的区别
 
-##### 3.3.1.1 语义分割的目标
+##### 3.4.1.1 语义分割的目标
 
 语义分割的任务是对输入的图像进行逐像素的分类，标记出像素级别的物体。
 
@@ -2111,7 +4303,7 @@ sudo make install
 
 如上图，图1中把猫、天空、树、草地进行了逐像素的分类；图2中把牛、天空、树、草地进行了逐像素的分类。
 
-##### 3.3.1.2 目标检测的目标
+##### 3.4.1.2 目标检测的目标
 
 目标检测的任务是对输入的图像进行物体检测，标注物体在图像上的位置，以及该位置上物体属于哪个分类。
 
@@ -2119,15 +4311,15 @@ sudo make install
 
 如上图，模型把图中的人、狗、马分别进行了位置标注，并且也给出了对应的分类类别。
 
-##### 3.3.1.3 小结
+##### 3.4.1.3 小结
 
 蕴含信息都包含分类信息和位置信息。
 
 但是语义分割所标记的物体是像素级别的颗粒度的，而目标检测标记的物体是其外切框。
 
-#### 3.3.2 训练
+#### 3.4.2 训练
 
-##### 3.3.2.1 安装
+##### 3.4.2.1 安装
 
 Pytorch环境安装省略
 
@@ -2135,7 +4327,7 @@ Pytorch环境安装省略
 pip install ultralytics
 ```
 
-##### 3.3.2.2 准备数据集
+##### 3.4.2.2 准备数据集
 
 Yolo团队为模型设计了专用数据集格式"YOLO"，要训练yolov8，必须确认数据集为yolo格式。
 
@@ -2191,7 +4383,7 @@ data_xn
 
 > *训练前，ultralytics会自动读取这写文件夹下的每张图片和标注，并生成* **缓存** *以便于下次训练直接复用。因此如果对数据集进行了改动，再次训练时应将缓存文件* `data_xn/labels/train.cache`和`data_xn/labels/test.cache` *删去以应用更改*
 
-##### 3.3.2.3 训练
+##### 3.4.2.3 训练
 
 **准备预训练模型**
 
@@ -2246,7 +4438,7 @@ if __name__ == "__main__":
 
 模型(权重)文件存放在相应模型文件夹中的`weights`文件夹
 
-#### 3.3.3 使用ONNX调用
+#### 3.4.3 使用ONNX调用
 
 [生成ONNX文件参考资料](https://docs.ultralytics.com/modes/export/)
 
@@ -2434,530 +4626,1336 @@ cv2.destroyAllWindows()
 ~~~
 
 
-### 3.4 IMU与里程计融合
+<div STYLE="page-break-after: always;"></div>
 
-> Contributors: 洪佳
+## 4 文档编写
+
+> Contributors: 叶睿聪 (dgsyrc@github)、洪佳
 
 > 参考文献：
 >
-> [5] [IMU和里程计融合_轮式里程计和imu融合-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/baimei4833953/article/details/80768762)
+> [3] [【Typora 教程】手把手教你如何用Typora撰写笔记](https://www.bilibili.com/video/BV1h84y1Y7nn/?vd_source=436470546f64e53b7d4516956091ffd7)
+
+软件：Typora
+
+以Typora编辑器以及Mardown+latex语法为例
+
+### 4.1 标题
+
+>语法：# (一级标题)  ## (二级标题)  ### (三级标题) ......
+
+>代码：
 >
-> [6] [什么是IMU？-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/su_fei_ma_su/article/details/125947605)
+>```text
+># 这是一级标题
+>## 这是二级标题
+>```
+
+>效果:  
 >
-> [7] [一文了解IMU原理、误差模型、标定、惯性传感器选型以及IMU产品调研(含IMU、AHRS、VRU和INS区别)_imu寄存器值计算重力-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/QLeelq/article/details/112985306?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"112985306"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
-
-#### 3.4.1 概述
-
-实际使用小车的过程中，光有麦轮的里程计计算是不够的，因为实际使用过程中经常会出现轮子打滑和数据出现累计误差的情况，所以我们可以从使用IMU和里程计融合的角度来对系统“升级”。
-
-#### 3.4.2 IMU
-
-##### 3.4.2.1 简述
-
-IMU 一般指6轴传感器，内部包含了3轴陀螺仪和3轴加速度计，3轴就是表示 XYZ 平面下的3个坐标轴。
-
-3轴陀螺仪测量的是每个轴上面的角速度，精度一般为 °/s ，也就是按照这个趋势旋转，每秒钟能走过的度数。
-
-3轴加速度计测量的是每个轴所受的重力加速度，比如传感器水平放置水平地面时，理论上只受到z轴负向的重力加速度，大小为 $9.8 m/s^2$
-
-##### 3.4.2.2 原理
-
-详细了解：
-
-[一文了解IMU原理、误差模型、标定、惯性传感器选型以及IMU产品调研(含IMU、AHRS、VRU和INS区别)_imu寄存器值计算重力-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/QLeelq/article/details/112985306?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"112985306"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
-
-#### 3.4.3 IMU数据获取
-
-##### 3.4.3.1 数据接口
-
-数据接口，通过配置可以输出原始 `ros_imu topic`
-
-还有更多方法
-
-##### 3.4.3.2 滤波
-
-ROS提供的相关包`imu_tools`进行滤波
-
-可以看到`complementary_filter_gain_node`会订阅该`topic`，即该`topic`作为输入滤波得到最终数据(发布`/imu/data` `topic` 类型同样为`sensor_msgs/Imu`)
-
-#### 3.4.4 融合方法
-
-##### 3.4.4.1 直接融合
-
-从`imu`得到的数据为一个相对角度(主要使用`yaw`，`roll`和`pitch` 后面不会使用到)，使用该角度来替代由编码器计算得到的角度。
-这个方法较为简单，出现打滑时候因`yaw`不会受到影响，即使你抬起机器人转动一定的角度，得到的里程也能正确反映出来
-
-##### 3.4.4.2 卡尔曼滤波
-
-**概述**
-
-官方卡尔曼滤波的包[`robot_pose_ekf`](http://wiki.ros.org/robot_pose_ekf)，`robot_pose_ekf`开启扩展卡尔曼滤波器生成机器人姿态，支持
-
-- `odom`（编码器）
-- `imu_data`（IMU）
-- `vo`（视觉里程计）
-  还可以支持[GPS](http://wiki.ros.org/robot_pose_ekf/Tutorials/AddingGpsSensor）
-
-**配置**
-
-可以在 `robot_pose_ekf` 包目录中找到 EKF 节点的默认启动文件。启动文件包含许多可配置的参数：
-
-- `freq`：过滤器的更新和发布频率。请注意，随着时间的推移，更高的频率会为您提供更多的机器人姿势，但不会提高每个估计的机器人姿势的准确性。
-- `sensor_timeout`：当传感器停止向过滤器发送信息时，过滤器应该等待多长时间才能在没有该传感器的情况下继续工作。
-- `odom_used`、`imu_used vo_used`：启用或禁用输入。
-
-可以在启动文件中修改配置，如下所示：
-
-![image-20231129141340231](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20231129141340231.png)
-
-**运行**
-
-创建程序包：
-
-```
- $ rosdep install robot_pose_ekf
- $ roscd robot_pose_ekf
- $ rosmake
-```
-
-**Run** the `robot pose ekf`
-
-```
- $ roslaunch robot_pose_ekf.launch
-```
-
-**相关节点**
-
-①robot_pose_ekf
-
-`robot_pose_ekf`实现了一个扩展的卡尔曼滤波器，用于确定机器人姿态。
-
-②Subscribed Topics
-
-`Odom` （[`nav_msgs/里程计`](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html))
-
-- **2D** pose（由车轮里程计使用）：2D 姿势包含机器人在地平面上的位置和方向以及该姿势的协方差。发送此 2D 姿势的消息实际上表示 3D 姿势，但 z、滚动和俯仰被简单地忽略。
-
-`imu_data` （[`sensor_msgs/Imu`](http://docs.ros.org/en/api/sensor_msgs/html/msg/Imu.html))
-
-- 3D orientation（由 IMU 使用）：**3D 方向**提供有关机器人底架相对于世界参考系的滚动角、俯仰角和偏航角的信息。横滚角和俯仰角被解释为绝对角度（因为 IMU 传感器具有重力参考），偏航角被解释为相对角度。协方差矩阵指定了方向测量的不确定度。`robot_pose_ekf` 在仅接收有关此主题的消息时不会启动;它还需要有关“VO”或“Odom”主题的消息。
-
-`vo`（[`nav_msgs/`里程计](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html))
-
-- **3D** pose（由视觉里程计使用）：3D pose表示机器人的完整位置和方向以及该pose的协方差。当传感器仅测量 3D 姿势的一部分时（例如，车轮里程计仅测量 2D 姿势），只需在未实际测量的 3D pose部分上指定较大的协方差即可。
-
-`robot_pose_ekf`节点不要求所有三个传感器源始终可用。每个源都给出了pose估计值和协方差。这些源以不同的速率和不同的延迟运行。源可以随时间推移出现和消失，节点将自动检测并使用可用的传感器。若要添加自己的传感器输入，请查看[添加 GPS 传感器教程](http://wiki.ros.org/robot_pose_ekf/Tutorials/AddingGpsSensor)
-
-③Published Topics
-
-`robot_pose_ekf/odom_combined` （[geometry_msgs/PoseWithCovarianceStamped](http://docs.ros.org/en/api/geometry_msgs/html/msg/PoseWithCovarianceStamped.html))
-
-- 过滤器的输出（估计的 3Drobot pose）
-
-④提供的` tf` 转换
-
-```
-odom_combined`→`base_footprint
-```
-
-##### 3.2.4.3 工作原理
-
-**Poes解释**
-
-所有向滤波器节点发送信息的传感器源都可以有自己的世界参考系，并且每个*世界*参考系都可以随时间任意漂移。因此，不同传感器发送的**absolute Pose**无法相互比较。该节点使用每个传感器的**relative pose differences**来更新扩展的卡尔曼滤波器。
-
-**协方差解释(Covariance interpretation)**
-
-随着机器人四处移动，其在世界参考中pose的不确定性越来越大。随着时间的流逝，协方差将无限增长。因此，发布pose本身的协方差是没有用的，相反，传感器源会发布协方差如何随时间变化，即速度上的协方差。*请注意，使用对世界的观察（例如，测量到已知墙壁的距离）将减少机器人姿势的不确定性;然而，这是定位，而不是里程计。*
-
-**Timing**
-
-想象一下，机器人姿势过滤器上次更新的时间是t_0。在*到达每个*传感器的至少一次测量值且时间戳晚于 t_0 之前，节点不会更新机器人姿势过滤器。例如，当在时间戳t_1 > t_0的 `odom` 主题和时间戳t_2 > t_1 > t_0的 `imu_data` 主题上收到消息时，过滤器现在将更新到有关所有传感器的信息可用的最新时间，在本例中为时间t_1。直接给出t_1处的 `odom` 位姿，通过对 t_1 和 t_0 之间的 `imu` 位姿进行线性插值得到 t_2 处的 `imu `位姿。机器人姿势过滤器使用` odom `和` imu `的相对姿势进行更新，介于 t_0 和 t_1 之间。
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/robot_pose_ekfaction=AttachFile&do=get&target=robot_pose_ekf.png" alt="robot_pose_ekf.png" style="zoom:50%;" />
-
-上图显示了PR2机器人从给定的初始位置（绿点）开始，驱动并返回初始位置时的实验结果。完美的里程计 x-y 图应显示精确的闭环。蓝线表示车轮里程计的输入，蓝点表示估计的结束位置。红线表示`robot_pose_ekf`的输出，它结合了车轮里程计和`imu`的信息，红点是估计的结束位置。
-
-**包裹状态**
-
-①稳定性
-
-这个包的代码库已经过很好的测试，并且已经稳定了很长时间。然而，随着消息类型的演变，ROS API 一直在变化。在未来的版本中，ROS API 可能会再次更改为简化的单主题界面（请参阅下面的路线图）。
-
-②路线图
-
-- 该滤波器目前设计用于我们在 PR2 机器人上使用的三个传感器信号（车轮里程计、`imu` 和 `vo`）。我们计划使这个包更加通用：未来的版本将能够监听“n”个传感器源，所有源都发布（[`nav_msgs/`里程计](http://docs.ros.org/en/api/nav_msgs/html/msg/Odometry.html)）消息。每个源都将在里程计消息中设置 3D 姿势的协方差，以指定它实际测量的 3D 姿势的哪一部分。
-- 我们想将速度添加到扩展卡尔曼滤波器的状态中。
-
-### 3.5 麦轮底盘运动学解算
-
-> Contributors: 洪佳
-
-> 参考文献：
+># 这是一级标题
 >
-> [10] [ROS机器人学习——麦克纳姆轮运动学解算-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/oXiaoLingTong/article/details/120198677)
+>## 这是二级标题
 
-#### 3.5.1 麦轮概述
-
-RM战车所用的轮子均为麦克纳姆轮，这种轮子安装方式与普通轮子无异，可安装于平行轴上，但是麦克纳姆轮可以实现全向移动，即前后运动、水平移动、绕中心自转。正因为以上优点，许多工业上的全向移动平台都会应用这种轮子。缺点也有，就是不耐磨，需要定期更换。
-
-（全向轮与麦克纳姆轮的共同点在于他们都由两大部分组成：轮毂和辊子（roller）。轮毂是整个轮子的主体支架，辊子则是安装在轮毂上的鼓状物。全向轮的轮毂轴与辊子转轴相互垂直，而麦克纳姆轮的轮毂轴与辊子转轴呈 45° 角。理论上，这个夹角可以是任意值，根据不同的夹角可以制作出不同的轮子，但最常用的还是这两种。）
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126010416033.png" alt="image-20240126010416033" style="zoom:33%;" />
-
-#### 3.5.2 麦轮安装
-
-同轴安装，分为左旋和右旋两种
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126015014818.png" alt="image-20240126015014818" style="zoom:33%;" />
-
-安装方式如下图，分别为：**X-正方形（X-square）、X-长方形（X-rectangle）、O-正方形（O-square）、O-长方形（O-rectangle）**
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126015110765.png" alt="image-20240126015110765" style="zoom:33%;" />
-
-- X-正方形：轮子转动产生的力矩会经过同一个点，所以 yaw 轴无法主动旋转，也无法主动保持 yaw 轴的角度。
-- X-长方形：轮子转动可以产生 yaw 轴转动力矩，但转动力矩的力臂一般会比较短。
-- O-正方形：四个轮子位于正方形的四个顶点，平移和旋转都没有任何问题。
-- O-长方形：轮子转动可以产生 yaw 轴转动力矩，而且转动力矩的力臂也比较长。是最常见的安装方式。
-
-#### 3.5.3 运动学模型
-
-##### 3.5.3.1 基础知识
-
-**坐标系统**
-
-使用右手定义,对于ROS机器人，如果以它为坐标系的原点，那么
-
-|  轴  | 方位 |
-| :--: | :--: |
-| x轴  | 前方 |
-| y轴  | 左方 |
-| z轴  | 上方 |
-
-**旋转运动**
-
-使用右手定义：
-
-围绕 z轴正旋转 是 逆时针旋转
-
-**测量单位**
-ROS使用公制 ：
-
-线速度：m/s
-角速度：rad/s
-
-##### 3.5.3.2 底盘运动学解算
-
-以下以**O-长方型**安装方式进行解算
-
-- 底盘中心
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013124388.png" alt="image-20240126013124388" style="zoom:33%;" />
-
-- 麦轮轴心（取右上角麦轮即一号轮子分析）
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013249796.png" alt="image-20240126013249796" style="zoom:33%;" />
-
-
-
-
-##### 3.5.3.3 逆运动学解算
-
-逆运动学模型（inverse kinematic model）得到的公式可以根据底盘的运动状态解算出四个轮子的速度
-
-①轮子轴心速度
-
-![image-20240126013514833](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013514833.png)
-
-②辊子方向的速度分量v1∥
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013654586.png" alt="image-20240126013654586" style="zoom:33%;" />
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126013846204.png" alt="image-20240126013846204" style="zoom: 67%;" />
-
-③轮子转速
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014229717.png" alt="image-20240126014229717" style="zoom:33%;" />
-
-![image-20240126014243401](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014243401.png)
-
-④整合得出底盘四个轮子转速，即底盘运动学模型
-
-![image-20240126014625107](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240126014625107.png)
-
-
-
-##### 3.5.3.4 正运动学解算
-
-正运动学模型（forward kinematic model）让我们可以通过四个轮子的速度，计算出底盘的运动状态。可以直接根据逆运动学模型中的三个方程解出来。
-
-转换为底盘坐标系下对时间求积分即为里程计变化量
-
-#### 3.5.4 代码实现
-
-代码参考：http://t.csdnimg.cn/ldXqr
-
-### 3.6 catkin_make编译
-
-> Contributors: 洪佳
-
-> 参考文献：
+>快捷键:
 >
-> [11] [ROS从入门到精通系列（五）catkin详解与catkin_make编译-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/hhaowang/article/details/101691986)
+>* Ctrl+数字1~6可以快速将选中的文本调成对应级别的标题
+>* Ctrl+0可以快速将选中的文本调成普通文本
+>* Ctrl+加号/减号对标题级别进行加减
 
-一定要搞明白`make/makefile/catkin_make/cmake/Cmakelist`的关系,本质是链接文件去生成可执行文件
+### 4.2 分割线
 
-系统学习大家还是要自己学，主要给大家提供思路，学习大纲还有遇到的一些问题的解决方法，少走弯路
+>语法:  ---或者***+回车
 
-#### 3.6.1 catkin编译系统
-
-对于源代码包，我们只有编译才能在系统上运行。而Linux下的编译器有``gcc、g++``，随着源文件的增加，直接用``gcc/g++``命令的方式显得效率低下，人们开始用`Makefile`来进行编译。然而随着工程体量的增大，`Makefile`也不能满足需求，于是便出现了`Cmake`工具。`CMake`是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。对于ROS这样大体量的平台来说，就采用的是`CMake`，并且ROS对`CMake`进行了扩展，于是便有了Catkin编译系统。
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129164912808.png" alt="image-20240129164912808" style="zoom:33%;" />
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129164930341.png" alt="image-20240129164930341" style="zoom:33%;" />
-
-其实早期是`rosbuild`，目前还支持使用，但是`ros`的核心软件包都已经被转换为Catkin
-
-#### 3.6.2 catkin_make 结构和特点
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165146937.png" alt="image-20240129165146937" style="zoom:33%;" />
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165635113.png" alt="image-20240129165635113" style="zoom:33%;" />
-
-#### 3.6.3 catkin_make编译流程
-
-- 建立工作空间
-- <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165753173.png" alt="image-20240129165753173" style="zoom:50%;" />
-- 编译
-- <img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129165829990.png" alt="image-20240129165829990" style="zoom:50%;" />
-
-source用来配置环境，不然`roslaunch`找不到对应的包
-
-#### 3.6.4 catkin_make文件系统
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70.png" alt="img" style="zoom: 33%;" />
-
-#### 3.6.5 package
-
-package也是ROS源代码存放的地方，任何ROS的代码无论是C++还是Python都要放到package中，这样才能正常的编译和运行。
-
-一个package可以编译出来多个目标文件（ROS可执行程序、动态静态库、头文件等等）。
-
-##### 3.6.5.1 package结构
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70-1706519610932-6.png" alt="img" style="zoom:33%;" />
-
-##### 3.6.5.2 package指令
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoYW93YW5n,size_16,color_FFFFFF,t_70-1706519738476-12.png" alt="img" style="zoom:33%;" />
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240129171704680.png" alt="image-20240129171704680" style="zoom:33%;" />
-
-#### 3.6.6 常见问题
-
-点进源代码包后，把`build/devel`两个包删了，在当前路径下进入终端
-
-```
-catkin_make
-```
-
-如果没有error，记得source配置环境，编译成功‘
-
-以下是一些问题现象和解决方案
-
-**问题①**
-
-```
-CMake Error at /opt/ros/noetic/share/catkin/cmake/catkinConfig.cmake:83 (find_package): Could not find a package configuration file provided by "catkin_virtualenv" with any of the following names:
-
-    catkin_virtualenvConfig.cmake
-    catkin_virtualenv-config.cmake
-  Invoking "make cmake_check_build_system" failed
-```
-
-这是由于缺少包导致的
-
-**解决方案：**
-
-在终端输入：
-
-```
-sudo apt-get install ros-noetic-catkin-virtualenv
-```
-
-注意：
-
-1.error里面”_”下划线在解决代码里面用“-”分割符号
-
-2.Ubuntu20.04是noetic        Ubuntu18.04是melodic
-
-3.有可能缺少好几个包，catkin_make多编译几次再下载几次包
-
-**问题②**
-
-在下载的时候
-
-```
-E:无法定位到软件包
-```
-
-原因很多，网络连接问题、`ros`软件源、apt源过期等问题
-
-**解决方案：**
-
-查一遍list,这个很麻烦需要耐心，我没试过谨慎试
-
-换源镜像
-
-http://t.csdnimg.cn/o9dce
-
-### 3.7 SLAM四种算法建图对比
-
-> Contributors: 洪佳
-
-> 参考文献：
+>代码:
 >
-> [12] [2D激光slam四种算法建图效果对比_slam建图算法-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/m0_73791170/article/details/127339058?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"127339058"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+>```text
+>---或者***
+>```
 
-SLAM——同步定位与建图（Simultaneous Localization and Mapping，SLAM）是在上世纪80年代被提出的，起初发展的算法皆采用激光雷达作为定位与建图的工具，随着稀疏性问题的解决，相机也被引入SLAM领域，如今SLAM技术在向多传感器融合的方向发展，激光雷达、深度相机、IMU惯导等正成为SLAM技术的常见解决方案。
+>效果:
 
-#### 3.7.1 Gmapping
+-----
 
-一种用于建立**二维地图的概率算法**，它基于激光雷达数据和机器人的运动信息，通过**蒙特卡洛方法**进行粒子滤波定位和地图构建。
+注意：*会自动补全另一个，字体显示不一致*；减号三个即可
 
-这个部分写得详细一点，因为我们比赛建图使用的就是`Gmapping`算法,从理论到实际
+### 4.3 文字显示
 
-（后面三种实际操作暂无，为了统一，参考构建地图都来自一篇文章）
+#### 4.3.1 字体
 
-##### 3.7.1.1 概述
+>语法:
+>
+>* 粗体:  用一对双星号包裹
+>* 删除线:  用一对双飘号包裹
+>* 下划线:  用一对u标签包裹
+>* 斜体:  用一对单星号包裹
+>* 高亮:  用一对双等号包裹
 
-其算法框架是基于RBPF粒子滤波算法，先进行定位再进行建图
+>代码:
+>
+>```text
+>**这是粗体**
+>~~这是删除线~~
+><u>这是下划线</u>
+>*这是斜体*
+>==这是高亮==
+>```
 
-RBPF：http://t.csdnimg.cn/h4PfS，对于建图而言，简单来说就是通过算法迭代，在粒子群中选出最优粒子，使用激光雷达数据和所关联的历史轨迹来绘制地图。其**定位和建图是分离的**，每个粒子都携带它们自身的地图（不适合大场地建图，但是我们比赛场地面积用`Gmapping`建图问题不大）。
+>效果:
+>**这是粗体**
+>~~这是删除线~~
+><u>这是下划线</u>
+>*这是斜体*
+>==这是高亮==
 
-|           RBPF问题           |            `Gmapping`改进            |
-| :--------------------------: | :----------------------------------: |
-| 粒子多——计算量大、内存消耗大 | 改进提议分布（考虑里程计、观测信息） |
-|      频繁执行——粒子退化      |       选择性重采样（设定阈值）       |
+>快捷键:
+>
+>* 加粗:  Ctrl+B
+>* 删除线:  Shift+Alt+5
+>* 下划线:  Ctrl+U
+>* 斜体:  Ctrl+I
 
-##### 3.7.1.2 优缺点
+#### 4.3.2 上下标
 
-- 优点
+>代码:
+>
+>```text
+>x^2^
+>H~2~O
+>```
 
-`Gmapping`可以实时构建室内地图，在构建小场景地图所需的计算量较小且精度较高。相比Hector SLAM对激光雷达频率要求低、鲁棒性高.
+>效果:
+>x^2^
+>H~2~O
 
-而相比Cartographer在构建小场景地图时，`Gmapping`不需要太多的粒子并且没有回环检测因此计算量小于Cartographer而精度并没有差太多。`Gmapping`有效利用了车轮里程计信息，这也是`Gmapping`对激光雷达频率要求低的原因：里程计可以提供机器人的位姿先验。而Hector和Cartographer的设计初衷不是为了解决平面移动机器人定位和建图，Hector主要用于救灾等地面不平坦的情况，因此无法使用里程计。而Cartographer是用于手持激光雷达完成SLAM过程，也就没有里程计可以用。
+### 4.4 列表
 
-- 缺点
+#### 4.4.1 无序列表
 
-随着场景增大所需的粒子增加，因为每个粒子都携带一幅地图，因此在构建大地图时所需内存和计算量都会增加。因此不适合构建大场景地图。
+>代码:
+>
+>```text
+>*/-/+ +空格
+>```
 
-没有**回环检测**(http://t.csdnimg.cn/8Vh3X)，因此在回环闭合时可能会造成地图错位，虽然增加粒子数目可以使地图闭合但是以增加计算量和内存为代价。所以不能像Cartographer那样构建大的地图。
+>效果:
+>1.只有同一级别:
+>
+>* 苹果
+>* 香蕉
+>* 橘子
+>
+>2.子集类:
+>
+>* 一级分类
+>  * 二级分类 
+>    * 三级分类
 
-`Gmapping`和Cartographer一个是基于滤波框架SLAM另一个是基于优化框架的SLAM，两种算法都涉及到时间复杂度和空间复杂度的权衡。`Gmapping`牺牲空间复杂度保证时间复杂度，这就造成`mapping`不适合构建大场景地图。翻看Cartographer算法，优化相当于地图中只用一个粒子，因此存储空间比较`Gmapping`会小很多倍，但计算量大;优化图需要复杂的矩阵运算。
+>快捷键:  Ctrl+Shift+]
 
-##### 3.7.1.3 建图实操
+#### 4.4.2 有序列表
 
-1)软硬件准备：
+>代码:
+>
+>```text
+>数字+.+空格
+>```
 
-`rplidar`及其驱动；navigation和`gmapping`等package;`tf`变换关系
+>效果:
+>
+>1. 第一个标题
+>2. 第二个标题
+>3. 第三个标题
+>
+>   * 子内容1
+>     * 子内容2
+>4. 第四个标题
 
-很多开源的相关功能包，这是SLAM导航核心技术的内容，随便查
+>快捷键:  Ctrl+Shift+[
 
-编译功能包，使系统识别ROS工作空间
+#### 4.4.3 任务列表
 
-下载`gmapping`·是为了能够在自己的小车运行，因此必须按照小车的实际情`gmapping`算法中的**参数进行配置**
+>代码:
+>
+>```text
+>- [ ] 吃早餐
+>- [x] 背单词
+>```
+
+>效果:
+>
+>- [ ] 吃早餐
+>- [x] 背单词
+
+### 4.5 区块显示
+
+>代码:
+>
+>```text
+>>+回车
+>```
+
+>效果:
+>
+>>这是最外层区块
+>
+>>>这是内层区块
+>
+>>>>这是最内层区块
+
+### 4.6 代码显示
+
+#### 4.6.1 行内代码
+
+代码：
 
 ```
-touch gmapping_robot.launch
+`sudo rm -rf /*`
 ```
 
-2)笔记本和主控板连接
+`sudo rm -rf /*`
 
-这个步骤看情况，直接接显示屏或者看小屏也可以
+>快捷键:  Ctrl+Shift+`
 
-可以`ssh`远程操控，使用`Nomachine`等工具
+#### 4.6.2 代码块
 
-3)操作指令
+点击代码块可以选择代码语言（要输入才会显示有什么选择），选择后会有代码高亮（也可以把语言标识写在第一行的三个点旁边以设置语言）
 
+如：cpp（即C++）、python、cmake等
+
+~~~markdown
 ```
-roslaunch turn_on_什么机器人 mapping.launch  //建图命令
-rviz     //可视化
-roslaunch  机器人 keyboard_teleop.launch   //控制命令
-roslaunch turn_on_什么机器人 map_saver.launch   //保存地图
+代码块
 ```
+~~~
 
-**注意：在单独启动rviz时，需要先启动master节点：`roscore`，然后另启一终端运行：`rosrun rviz rviz`。但是对.launch文件，运行之后，若master节点没有启动会自动去启动它，因此在第二步运行rviz时，master节点已经被启动了，无需再次运行`roscore`。
-每次打开rviz都要重新配置很麻烦，可以使用ctrl+s命令保存当前配置，保存到路径`opt/ros/melodic/share/rviz/default.rviz`，若提示无法写入该文件，则是当前文件权限为“only read”，启动一个终端，输入并运行命令`sudo chmod 777 /opt/ros/melodic/share/rviz/default.rviz`，然后再此尝试`ctrl+s`保存即可成功**
+例如C++代码：
 
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172132705.png" alt="image-20240127172132705" style="zoom:67%;" />
+````markdown
+```cpp
+代码块
+```
+````
 
-4)灰度地图和代价地图
+代码高亮效果：
 
-建图得到**灰度地图**，其数值范围为[-1,100]，其中“-1”代表未知区域，基本是`rviz`的背景色，“0“代表自由区域，为白色，”100“代表完全占用，为黑色，实际上在建图时只有”-1“、”0“、”100“三种情况，因为建图过程中雷达探测到了障碍物一般就是确定的，不会取0-100之间的数值。
+```cpp
+#include<iostream>
+using namespace std;
 
-到了执行导航功能时，系统的地图又有所不同，此时使用的并不完全是使用建图的地图，而是使用代价地图。代价地图的取值范围是[0,254]，数值越大，表示占用程度越高，导航时小车越要远离。
-
-代价地图的生成过程可以参考此文章：https://blog.csdn.net/qq_35635374/article/details/120874817（到了导航部分再细说），总而言之就是对之前建好的静态层地图和雷达运行探测到的障碍层地图按照膨胀规则进行膨胀和合并，生成数值在[0,254]之间的代价地图，导航时按照地图方格中的数值进行路径规划
-
-#### 3.7.2 Hector
-
-`Hector`算法框架是基于高斯牛顿
-（Hector 在机器人快速转向时很容易发生错误匹配，建出的地图发生错位，原因主要是优化算法容易陷入局部最小值）
-
-优点：不需要里程计，适应于空中或者路面不平坦的环境
-
-缺点：旋转过快易发生漂移，无回环检测
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172707169.png" alt="image-20240127172707169" style="zoom: 50%;" />
-
-#### 3.7.3 Karto
-
-`Karto`算法框架是基于图优化
-
-优点：这是首个基于图优化的开源算法，利用高度优化和非迭代平方根法分解从而进行稀疏化解耦求解
-
-缺点：无法实时构建子图，耗费时间
-
-<img src="./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172725405.png" alt="image-20240127172725405" style="zoom:50%;" />
-
-#### 3.7.4 Cartographer
-
-`Cartographer`算法框架是基于图优化cartographer在不同环境下，调整参数和传感器配置，就能工作
-大部分数据集，cartographer表现更优。ActiveSubmaps2D类中的submaps_列表实际最多只两个submap，一个认为是old_map，另一个认为是new_map，类似于滑窗操作。
-
-当new_map插入激光scan的个数达到阈值时，则会将old_map进行结束，并且不再增加新的scan。同时将old_map进行删除，将new_map作为`oldmap`，然后重新初始化一个新的submap作为`newmap`。其具体实现可看代码注解，较为简单。首先回环优化，我们需要检测到回环，再进行优化。如何检测回环呢，前文也提到过，如果当前的scan和所有已创建完成的submap中的某个laser scan的位姿在距离上足够近，那么通过某种 scan match策略就会找到该闭环。
-
-这里为了减少计算量，提高实时回环检测的效率，Cartographer应用了branch and bound(分支定界)优化方法进行优化搜索，如果得到一个足够好的匹配，到此处，回环检测部分已经结束了，已经检测到了回环得存在。接下来要根据当前scan的位姿和匹配到得最接近的submap中的某一个位姿来对所有的submap中的位姿进行优化，即使残差E最小。
-
-优点：适应于低成本激光雷达，加速回环检测，实时性强
-
-缺点：在几何对称环境中，易回环出错
-
-![image-20240127172736432](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/image-20240127172736432.png)
-
-### 3.8 cmake
-
-#### 3.8.1 常见问题
-
-1.`target_compile_definitions` 的宏定义内容在VSCode编辑器中中无法识别
-
-**解决方案**
-
-在 `.vscode/c_cpp_properties.json` 中新增下列参数
-
-参考自 [Stack Overflow](https://stackoverflow.com/questions/74397633/vscode-intellisense-cannot-understand-cmake-add-definitions)
-
-```json
+int main()
 {
-    "configurations": [
-        {
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
-        }
-    ],
+    cout << "Hello World!" << endl;
+    return 0;
 }
 ```
+
+>快捷键:  Ctrl+Shift+K
+
+### 4.7 链接
+
+>代码:
+>
+>```text
+>www.baidu.com
+>[百度一下](https://www.baidu.com)
+>[百度一下](https://www.baidu.com "https://www.baidu.com")
+>```
+
+>效果:
+>www.baidu.com
+>[百度一下](https://www.baidu.com)
+>[百度一下](https://www.baidu.com "https://www.baidu.com")
+
+>快捷键:  Ctrl+K
+
+### 4.8 脚注
+
+>说明:  对文本进行解释说明。
+
+>代码: 
+>
+>```text
+>[^文本]
+>[^文本]:解释说明
+>```
+
+>应用:
+>这是一个技术\[^①\]
+>
+>\[^①\]: 这是一个非常好用的框架。
+
+实际效果为在文本后显示^后的文本
+
+点击该文本后会跳转至文档最末尾并列出`[^①]:` 后内容
+
+### 4.9 图片插入
+
+```markdown
+![描述](图片链接或本地路径)
+```
+
+如：
+
+```markdown
+![5](./Sirius 战队2023视觉组培训20231029/5.jpg)
+```
+
+![5](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/5.jpg)
+
+>快捷键:  Ctrl+Shift+I
+
+### 4.10 表格
+
+>代码:
+>
+>```text
+>|  1   |  2   |  3   |
+>| :--- | :--: | ---: |
+>|  4   |  5   |  6   |
+>|  7   |  8   |  9   |
+>|  10  |  11  |  12  |
+>```
+
+>效果:
+>
+>| 1    |  2   |    3 |
+>| ---- | :--: | ---: |
+>| 4    |  5   |    6 |
+>| 7    |  8   |    9 |
+>| 10   |  11  |   12 |
+
+>快捷键:  Ctrl+T
+
+### 4.11 流程图
+
+#### 4.11.1 横向流程图
+
+> 代码:
+>
+> ````text
+> ```mermaid
+> graph LR
+> A[方形]==>B(圆角)
+> B==>C{条件a}
+> C-->|a=1|D[结果1]
+> C-->|a=2|E[结果2]
+> F[横向流程图]
+> ```
+> ````
+
+>效果:
+>
+>```mermaid
+>graph LR
+>A[方形]==>B(圆角)
+>B==>C{条件a}
+>C-->|a=1|D[结果1]
+>C-->|a=2|E[结果2]
+>F[横向流程图]
+>```
+
+#### 4.11.2 竖向流程图
+
+> 代码:
+>
+> ````text
+> ```mermaid
+> graph TD
+> A[方形]==>B(圆角)
+> B==>C{条件a}
+> C-->|a=1|D[结果1]
+> C-->|a=2|E[结果2]
+> F[竖向流程图]
+> ```
+> ````
+
+>效果:
+>
+>```mermaid
+>graph TD
+>A[方形]==>B(圆角)
+>B==>C{条件a}
+>C-->|a=1|D[结果1]
+>C-->|a=2|E[结果2]
+>F[竖向流程图]
+>```
+
+### 4.12 表情符号
+
+>代码:
+>
+>```text
+>:happy:、:cry:、:man:
+>```
+
+>效果:
+>:happy:、 :cry:、 :man:
+
+### 4.13 数学公式（Latex）
+
+#### 4.13.1 公式的插入
+
+**①行中公式**
+
+>代码:
+>
+>```text
+>$公式$
+>```
+
+>效果:
+>$公式$
+
+**②独立公式**
+
+>代码:
+>
+>```text
+>$$
+>公式
+>$$
+>```
+
+>效果:
+>$$
+>公式
+>$$
+
+#### 4.13.2 上下标
+
+>代码:
+>
+>```text
+>$x^{y^z}=(1+e^x)^{-2xy^w}$
+>$\sideset{^1_2}{^3_4}{\underset{6}\bigotimes}$
+>```
+
+>效果:
+>$x^{y^z}=(1+e^x)^{-2xy^w}$
+>$\sideset{^1_2}{^3_4}{\underset{6}\bigotimes}$
+
+#### 4.13.3 括号和分隔符
+
+>代码:
+>
+>```text
+>$\langle\quad\rangle\quad\lceil\quad\rceil\quad\lfloor\quad\rfloor\quad\lbrace\quad\rbrace\quad\lVert\quad\rVert$
+>$f(x,y,z)=3y^2z\left(3+\dfrac{7x+5}{1+y^2}\right)$
+>$\left.\dfrac{\mathrm{d}u}{\mathrm{d}x}\right|_{x=0}$
+>```
+
+>效果:
+>$\langle\quad\rangle\quad\lceil\quad\rceil\quad\lfloor\quad\rfloor\quad\lbrace\quad\rbrace\quad\lVert\quad\rVert$
+>$f(x,y,z)=3y^2z\left(3+\dfrac{7x+5}{1+y^2}\right)$
+>$\left.\dfrac{\mathrm{d}u}{\mathrm{d}x}\right|_{x=0}$
+
+#### 4.13.4 分数
+
+>代码:
+>
+>```text
+>$\frac{a}{b}\quad\dfrac{a}{b}\quad {a\over b}$
+>```
+
+>效果:
+>$\frac{a}{b}\quad\dfrac{a}{b}\quad {a\over b}$
+
+#### 4.13.5 开方
+
+>代码:
+>
+>```text
+>$\sqrt[根指数,省略时为2]{被开方数}$
+>```
+
+>效果:
+>$\sqrt{2}\quad\sqrt[3]{2}$
+
+#### 4.13.6 省略号
+
+>代码:
+>
+>```text
+>$\cdots\quad\ldots\quad\vdots\quad\ddots$
+>```
+
+>效果:
+>$\cdots\quad\ldots\quad\vdots\quad\ddots$
+
+#### 4.13.7 矢量和均值
+
+>代码:
+>
+>```text
+>$\overrightarrow{E(\vec{r})}\quad\overleftarrow{E(\vec{r})}\quad\overleftrightarrow{E(\vec{r})}\quad\underrightarrow{E(\vec{r})}\quad\underleftarrow{E(\vec{r})}\quad\underleftrightarrow{E(\vec{r})}\quad\overline{v}=\bar{v}\quad\underline{v}$
+>```
+
+>效果:
+>$\overrightarrow{E(\vec{r})}\quad\overleftarrow{E(\vec{r})}\quad\overleftrightarrow{E(\vec{r})}\quad\underrightarrow{E(\vec{r})}\quad\underleftarrow{E(\vec{r})}\quad\underleftrightarrow{E(\vec{r})}\quad\overline{v}=\bar{v}\quad\underline{v}$
+
+#### 4.13.8 积分
+
+>代码:
+>
+>```text
+>$$
+>\iint\limits_D\left(\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}\right){\rm d}x{\rm d}y=\oint\limits_LP{\rm d}x+Q{\rm d}y
+>$$
+>```
+
+>效果:
+>$$
+>\iint\limits_D\left(\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}\right){\rm d}x{\rm d}y=\oint\limits_LP{\rm d}x+Q{\rm d}y
+>$$
+
+#### 4.13.9 极限
+
+>代码:
+>
+>```text
+>$\lim\limits_{n\to\infin}(1+\dfrac{1}{n})^n=e$
+>```
+
+>效果:
+>$\lim\limits_{n\to\infin}(1+\dfrac{1}{n})^n=e$
+
+#### 4.13.10 累加、累乘及交集、并集
+
+>```text
+>$\sum\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\prod\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\bigcup\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\bigcap\limits_{i=1}^n\dfrac{1}{n^2}$
+>```
+
+>效果:
+>$\sum\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\prod\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\bigcup\limits_{i=1}^n\dfrac{1}{n^2}\quad and\quad\bigcap\limits_{i=1}^n\dfrac{1}{n^2}$
+
+#### 4.13.11 希腊字母
+
+| 语法                          | 字母                            | 语法                    | 字母                      | 语法               | 字母                 |
+| :---------------------------- | ------------------------------- | ----------------------- | ------------------------- | ------------------ | -------------------- |
+| \Alpha(\alpha)                | $\Alpha(\alpha)$                | \Beta(\beta)            | $\Beta(\beta)$            | \Gamma(\gamma)     | $\Gamma(\gamma)$     |
+| \Epsilon(\epsilon)\varepsilon | $\Epsilon(\epsilon)\varepsilon$ | \Zeta(\zeta)            | $\Zeta(\zeta)$            | \Eta(\eta)         | $\Eta(\eta)$         |
+| \Iota(\iota)                  | $\Iota(\iota)$                  | \Kappa(\kappa)\varkappa | $\Kappa(\kappa)\varkappa$ | \Lambda(\lambda)   | $\Lambda(\lambda)$   |
+| \Nu(\nu)                      | $\Nu(\nu)$                      | \Xi(\xi)                | $\Xi(\xi)$                | \Omicron(\omicron) | $\Omicron(\omicron)$ |
+| \Rho(\rho)\varrho             | $\Rho(\rho)\varrho$             | \Sigma(\sigma)\varsigma | $\Sigma(\sigma)\varsigma$ | \Tau(\tau)         | $\Tau(\tau)$         |
+| \Phi(\phi)\varphi             | $\Phi(\phi)\varphi$             | \Chi(\chi)              | $\Chi(\chi)$              | \Psi(\psi)         | $\Psi(\psi)$         |
+| \Delta(\delta)                | $\Delta(\delta)$                | \Theta(\theta)\vartheta | $\Theta(\theta)\vartheta$ | \Mu(\mu)           | $\Mu(\mu)$           |
+| \Pi(\pi)\varpi                | $\Pi(\pi)\varpi$                | \Omega(\omega)          | $\Omega(\omega)$          | \upsilon           | $\upsilon$           |
+| \ell                          | $\ell$                          | \eth                    | $\eth$                    | \hbar              | $\hbar$              |
+| \hslash                       | $\hslash$                       | \mho                    | $\mho$                    | \partial           | $\partial$           |
+
+#### 4.13.12 特殊字符
+
+**①说明**
+
+>可以在字符前使用`\large`或`\small`以显示更大或更小的字符。${\LARGE A}{\Large A}{\large A}A{\small A}$
+
+**②关系运算符**
+
+| 输入      | 显示        | 输入              | 显示                | 输入         | 显示         |
+| --------- | ----------- | ----------------- | ------------------- | ------------ | ------------ |
+| \pm(\mp)  | $\pm(\mp)$  | \times            | $\times$            | \div         | $\div$       |
+| \nmid     | $\nmid$     | \cdot             | $\cdot$             | \mid         | $\mid$       |
+| \bigodot  | $\bigodot$  | \bigotimes        | $\bigotimes$        | \bigoplus    | $\bigoplus$  |
+| \ge       | $\ge$       | \le               | $\le$               | \ll          | $\ll$        |
+| \geqslant | $\geqslant$ | \leqslant         | $\leqslant$         | \neq         | $\neq$       |
+| \approx   | $\approx$   | \xlongequal{文本} | $\xlongequal{文本}$ | \triangleq   | $\triangleq$ |
+| \sim      | $\sim$      | \doteq            | $\doteq$            | \equiv       | $\equiv$     |
+| \cong     | $\cong$     | \propto           | $\propto$           | \parallel(\\ | )            |
+| \prec     | $\prec$     | \pmod{2}          | $\pmod{2}$          | \bmod        | $\bmod{2}$   |
+
+**③集合运算符**
+
+| 输入      | 显示        | 输入        | 显示          | 输入       | 显示         |
+| --------- | ----------- | ----------- | ------------- | ---------- | ------------ |
+| \emptyset | $\emptyset$ | \varnothing | $\varnothing$ |            |              |
+| \subset   | $\subset$   | \subseteq   | $\subseteq$   | \subsetneq | $\subsetneq$ |
+| \supset   | $\supset$   | \supseteq   | $\supseteq$   | \supsetneq | $\supsetneq$ |
+| \bigcap   | $\bigcap$   | \bigcup     | $\bigcup$     | \setminus  | $\setminus$  |
+| \bigvee   | $\bigvee$   | \bigwedge   | $\bigwedge$   |            |              |
+| \in       | $\in$       | \notin      | $\notin$      | \ni        | $\ni$        |
+
+**④三角运算符**
+
+| 输入    | 显示      | 输入 | 显示   | 输入   | 显示     |
+| ------- | --------- | ---- | ------ | ------ | -------- |
+| \circ   | $\circ$   | \bot | $\bot$ | \angle | $\angle$ |
+| \degree | $\degree$ |      |        |        |          |
+
+**⑤微积分运算符**
+
+| 输入  | 显示    | 输入   | 显示     | 输入      | 显示     |
+| ----- | ------- | ------ | -------- | --------- | -------- |
+| \int  | $\int$  | \iint  | $\iint$  | \iiint    | $\iiint$ |
+| \oint | $\oint$ | \oiint | $\oiint$ | \prime(‘) | $\prime$ |
+| \lim  | $\lim$  | \infin | $\infin$ | \nabla    | $\nabla$ |
+
+**⑥逻辑运算符**
+
+| 输入     | 显示       | 输入       | 显示         | 输入   | 显示     |
+| -------- | ---------- | ---------- | ------------ | ------ | -------- |
+| \because | $\because$ | \therefore | $\therefore$ |        |          |
+| \forall  | $\forall$  | \exist     | $\exist$     |        |          |
+| \not>    | $\not>$    | \not<      | $\not<$      |        |          |
+| \land    | $\land$    | \lor       | $\lor$       | \lnot  | $\lnot$  |
+| \top     | $\top$     | \vdash     | $\vdash$     | \vDash | $\vDash$ |
+
+**⑦带帽符号**
+
+| 输入           | 显示             | 输入            | 显示              |
+| -------------- | ---------------- | --------------- | ----------------- |
+| \hat{xy}       | $\hat{xy}$       | \widehat{xyz}   | $\widehat{xyz}$   |
+| \tilde{xy}     | $\tilde{xy}$     | \widetilde{xyz} | $\widetilde{xyz}$ |
+| \check{x}      | $\check{x}$      | \breve{y}       | $\breve{y}$       |
+| \grave{x}      | $\grave{x}$      | \acute{y}       | $\acute{y}$       |
+| \dot{x}        | $\dot{x}$        | \ddot{x}        | $\ddot{x}$        |
+| \overparen{xy} | $\overparen{xy}$ |                 |                   |
+
+**⑧选取符号**
+
+| 输入                           | 显示                             | 输入                            | 显示                              |
+| ------------------------------ | -------------------------------- | ------------------------------- | --------------------------------- |
+| \fbox{a+b+c+d}                 | $\fbox{a+b+c+d}$                 |                                 |                                   |
+| \overbrace{xx\cdots x}^{10个x} | $\overbrace{xx\cdots x}^{10个x}$ | \underbrace{xx\cdots x}_{10个x} | $\underbrace{xx\cdots x}_{10个x}$ |
+
+**⑨箭头符号**
+
+| 输入           | 显示             | 输入              | 显示                | 输入                | 显示                  |
+| -------------- | ---------------- | ----------------- | ------------------- | ------------------- | --------------------- |
+| \leftarrow     | $\leftarrow$     | \rightarrow       | $\rightarrow$       | \leftrightarrow     | $\leftrightarrow$     |
+| \longleftarrow | $\longleftarrow$ | \longrightarrow   | $\longrightarrow$   | \longleftrightarrow | $\longleftrightarrow$ |
+| \Leftarrow     | $\Leftarrow$     | \Rightarrow       | $\Rightarrow$       | \Leftrightarrow     | $\Leftrightarrow$     |
+| \Longleftarrow | $\Longleftarrow$ | \Longrightarrow   | $\Longrightarrow$   | \Longleftrightarrow | $\Longleftrightarrow$ |
+| \uparrow       | $\uparrow$       | \downarrow        | $\downarrow$        | \updownarrow        | $\updownarrow$        |
+| \Uparrow       | $\Uparrow$       | \Downarrow        | $\Downarrow$        | \Updownarrow        | $\Updownarrow$        |
+| \to            | $\to$            | \swarrow          | $\swarrow$          | \nearrow            | $\nearrow$            |
+| \gets          | $\gets$          | \searrow          | $\searrow$          | \nwarrow            | $\nwarrow$            |
+| \mapsto        | $\mapsto$        | \rightrightarrows | $\rightrightarrows$ |                     |                       |
+
+**⑩空格**
+
+| 输入 | 效果   | 输入    | 效果   | 输入   | 效果       |
+| ---- | ------ | ------- | ------ | ------ | ---------- |
+| \\!  | $|\!|$ | 默认    | $||$   | \quad  | $|\quad|$  |
+| \,   | $|\,|$ | \;(\\ ) | $|\;|$ | \qquad | $|\qquad|$ |
+
+#### 4.13.13 字体
+
+> 代码:
+>
+> ```text
+> ${\字体{需要转换的字符}}$
+> ```
+
+| 输入 | 说明     | 显示            | 输入  | 说明       | 显示              |
+| ---- | -------- | --------------- | ----- | ---------- | ----------------- |
+| \rm  | 罗马体   | ${\rm{Sample}}$ | \cal  | 花体       | ${\cal{Sample}}$  |
+| \it  | 意大利体 | ${\it{Sample}}$ | \Bbb  | 黑板粗体   | ${\Bbb{Sample}}$  |
+| \bf  | 粗体     | ${\bf{Sample}}$ | \mit  | 数学斜体   | ${\mit{Sample}}$  |
+| \sf  | 等线体   | ${\sf{Sample}}$ | \scr  | 手写体     | ${\scr{Sample}}$  |
+| \tt  | 打字机体 | ${\tt{Sample}}$ | \frak | 旧德式字体 | ${\frak{Sample}}$ |
+
+#### 4.13.14 大括号和行标
+
+>说明:  使用`\left`和`\right`来创建自动匹配高度的`()`、`[]`、`{}`、`.`。在每个公式末尾使用`\tag{行标}`来实现行标。
+
+>代码:
+>
+>```text
+>$$
+>f\left(
+>\left[
+>\dfrac{1+\{x,y\}}{\left(\dfrac{x}{y}+\dfrac{y}{x}\right)(u+1)}+a
+>\right]
+>^{\dfrac{3}{2}}
+>\right)
+>\tag{行标}
+>$$
+>```
+
+>效果:
+>$$
+>f\left(\left[\dfrac{1+\{x,y\}}{\left(\dfrac{x}{y}+\dfrac{y}{x}\right)(u+1)}+a\right]^{\dfrac{3}{2}}\right)\tag{行标}
+>$$
+
+>说明:如果你想将行内显示的分隔符也变大,也可以使用`\middle`命令
+
+>代码:
+>
+>```text
+>$$
+>\left\langle q\middle\|\dfrac{\dfrac{x}{y}}{\dfrac{u}{v}}\middle|p\right\rangle
+>$$
+>```
+
+>效果:
+>$$
+>\left\langle q\middle\|\dfrac{\dfrac{x}{y}}{\dfrac{u}{v}}\middle|p\right\rangle
+>$$
+
+#### 4.13.15 其他命令
+
+**①注释文字**
+
+>代码:
+>
+>```text
+>$\text{文字}$
+>```
+
+>效果:
+>$$
+>f(n)=\begin{cases}n/2,&\text{if $n$ is even}\\3n+1,&\text{if $n$ is odd}\end{cases}
+>$$
+
+**③文字颜色**
+
+>* 适用新旧浏览器
+>  代码:
+>
+>```text
+>$\color{颜色}{文字}$
+>```
+
+| 输入    | 显示                     | 输入   | 显示                    | 输入   | 显示                    |
+| ------- | ------------------------ | ------ | ----------------------- | ------ | ----------------------- |
+| black   | $\color{black}{color}$   | grey   | $\color{grey}{color}$   | silver | $\color{silver}{color}$ |
+| white   | $\color{white}{color}$   | maroon | $\color{maroon}{color}$ | red    | $\color{red}{color}$    |
+| yellow  | $\color{yellow}{color}$  | lime   | $\color{lime}{color}$   | olive  | $\color{olive}{color}$  |
+| green   | $\color{green}{color}$   | teal   | $\color{teal}{color}$   | auqa   | $\color{auqa}{color}$   |
+| blue    | $\color{blue}{color}$    | navy   | $\color{navy}{color}$   | purple | $\color{purple}{color}$ |
+| fuchsia | $\color{fuchsia}{color}$ |        |                         |        |                         |
+
+>* 适用新版浏览器
+>  代码:
+>
+>```text
+>$\color{#rgb}{文字}$    (注:其中r、g、b可以输入0~9和a~f来分别表示红色、绿色和蓝色的纯度)
+>```
+
+| 输入 | 输出                  | 输入 | 输出                  | 输入 | 输出                  | 输入 | 输出                  |
+| ---- | --------------------- | ---- | --------------------- | ---- | --------------------- | ---- | --------------------- |
+| #000 | $\color{#000}{color}$ | #005 | $\color{#005}{color}$ | #00A | $\color{#00A}{color}$ | #00F | $\color{#00F}{color}$ |
+| #500 | $\color{#500}{color}$ | #505 | $\color{#505}{color}$ | #50A | $\color{#50A}{color}$ | #50F | $\color{#50F}{color}$ |
+| #A00 | $\color{#A00}{color}$ | #A05 | $\color{#A05}{color}$ | #A0A | $\color{#A0A}{color}$ | #A0F | $\color{#A0F}{color}$ |
+| #F00 | $\color{#F00}{color}$ | #F05 | $\color{#F05}{color}$ | #F0A | $\color{#F0A}{color}$ | #F0F | $\color{#F0F}{color}$ |
+| #050 | $\color{#050}{color}$ | #055 | $\color{#055}{color}$ | #05A | $\color{#05A}{color}$ | #05F | $\color{#05F}{color}$ |
+| #550 | $\color{#550}{color}$ | #555 | $\color{#555}{color}$ | #55A | $\color{#55A}{color}$ | #55F | $\color{#55F}{color}$ |
+| #A50 | $\color{#A50}{color}$ | #A55 | $\color{#A55}{color}$ | #A5A | $\color{#A5A}{color}$ | #A5F | $\color{#A5F}{color}$ |
+| #F50 | $\color{#F50}{color}$ | #F55 | $\color{#F55}{color}$ | #F5A | $\color{#F5A}{color}$ | #F5F | $\color{#F5F}{color}$ |
+| #0A0 | $\color{#0A0}{color}$ | #0A5 | $\color{#0A5}{color}$ | #0AA | $\color{#0AA}{color}$ | #0AF | $\color{#0AF}{color}$ |
+| #5A0 | $\color{#5A0}{color}$ | #5A5 | $\color{#5A5}{color}$ | #5AA | $\color{#5AA}{color}$ | #5AF | $\color{#5AF}{color}$ |
+| #AA0 | $\color{#AA0}{color}$ | #AA5 | $\color{#AA5}{color}$ | #AAA | $\color{#AAA}{color}$ | #AAF | $\color{#AAF}{color}$ |
+| #FA0 | $\color{#FA0}{color}$ | #FA5 | $\color{#FA5}{color}$ | #FAA | $\color{#FAA}{color}$ | #FAF | $\color{#FAF}{color}$ |
+| #0F0 | $\color{#0F0}{color}$ | #0F5 | $\color{#0F5}{color}$ | #0FA | $\color{#0FA}{color}$ | #0FF | $\color{#0FF}{color}$ |
+| #5F0 | $\color{#5F0}{color}$ | #5F5 | $\color{#5F5}{color}$ | #5FA | $\color{#5FA}{color}$ | #5FF | $\color{#5FF}{color}$ |
+| #AF0 | $\color{#AF0}{color}$ | #AF5 | $\color{#AF5}{color}$ | #AFA | $\color{#AFA}{color}$ | #AFF | $\color{#AFF}{color}$ |
+| #FF0 | $\color{#FF0}{color}$ | #FF5 | $\color{#FF5}{color}$ | #FFA | $\color{#FFA}{color}$ | #FFF | $\color{#FFF}{color}$ |
+
+**③删除线**
+
+>说明:  使用`\require{cancle}`声明，再使用`\cancle{字符}`、`\bcancle{字符}`、`\xcancle{字符}`、`\cancleto{字符}{字符}`来实现各种**片段删除线**效果。
+
+>代码:
+>
+>```text
+>$$
+>\require{cancel}\begin{array}{r1}
+>\verb|y+\cancel{x}|&y+\cancel{x}\\
+>\verb|y+\cancel{y+x}|&y+\cancel{y+x}\\
+>\verb|y+\bcancel{x}|&y+\bcancel{x}\\
+>\verb|y+\xcancel{x}|&y+\xcancel{x}\\
+>\verb|y+\cancelto{0}{x}|&y+\cancelto{0}{x}\\
+>\verb+\frac{1\cancel9}{\cancel95}=\frac15+&\frac{1\cancel9}{\cancel95}=\frac15\\
+>\end{array}
+>$$
+>```
+
+>效果:
+>$$
+>\require{cancel}\begin{array}{r1}
+>\verb|y+\cancel{x}|&y+\cancel{x}\\
+>\verb|y+\cancel{y+x}|&y+\cancel{y+x}\\
+>\verb|y+\bcancel{x}|&y+\bcancel{x}\\
+>\verb|y+\xcancel{x}|&y+\xcancel{x}\\
+>\verb|y+\cancelto{0}{x}|&y+\cancelto{0}{x}\\
+>\verb+\frac{1\cancel9}{\cancel95}=\frac15+&\frac{1\cancel9}{\cancel95}=\frac15\\
+>\end{array}
+>$$
+
+>说明:  使用`\require{enclose}`来允许**整段删除线**的显示，再使用`\enclose{删除线效果}{字符}`来使用各种整段删除线效果。其中，删除线效果有`horizontalstrike`、`verticalstrike`、`updiagonalstrike`和`downdiagonalstrike`,可以叠加使用。
+
+>代码:
+>
+>```text
+>$$
+>\require{enclose}\begin{array}{r1}
+>\verb|\enclose{horizontalstrike}{x+y}|&\enclose{horizontalstrike}{x+y}\\
+>\verb|\enclose{verticalstrike}{\frac xy}|&\enclose{verticalstrike}{\frac xy}\\
+>\verb|\enclose{updiagonalstrike}{x+y}|&\enclose{updiagonalstrike}{x+y}\\
+>\verb|\enclose{downdiagonalstrike}{x+y}|&\enclose{downdiagonalstrike}{x+y}\\
+>\verb|\enclose{horizontalstrike,updiagonalstrike}{x+y}|&\enclose{horizontalstrike,updiagonalstrike}{x+y}\\
+>\end{array}
+>$$
+>```
+
+>效果:
+>$$
+>\require{enclose}\begin{array}{r1}
+>\verb|\enclose{horizontalstrike}{x+y}|&\enclose{horizontalstrike}{x+y}\\
+>\verb|\enclose{verticalstrike}{\frac xy}|&\enclose{verticalstrike}{\frac xy}\\
+>\verb|\enclose{updiagonalstrike}{x+y}|&\enclose{updiagonalstrike}{x+y}\\
+>\verb|\enclose{downdiagonalstrike}{x+y}|&\enclose{downdiagonalstrike}{x+y}\\
+>\verb|\enclose{horizontalstrike,updiagonalstrike}{x+y}|&\enclose{horizontalstrike,updiagonalstrike}{x+y}\\
+>\end{array}
+>$$
+
+#### 4.13.16 矩阵
+
+**①无框矩阵**
+
+>代码:
+>
+>```text
+>$$
+>\begin{matrix}
+>1&x&x^2\\
+>1&y&y^2\\
+>1&z&z^2\\
+>\end{matrix}
+>$$
+>```
+
+>效果:
+>$$
+>\begin{matrix}
+>1&x&x^2\\
+>1&y&y^2\\
+>1&z&z^2\\
+>\end{matrix}
+>$$
+
+**②边框矩阵**
+
+>说明:  在开头将`matrix`替换为`pmatrix`、`bmatrix`、`Bmatrix`、`vmatrix`、`Vmatrix`。
+
+| matrix                               | pmatrix                                | bmatrix                                | Bmatrix                                | vmatrix                                | Vmatrix                                |
+| ------------------------------------ | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| $\begin{matrix}1&2\\3&4\end{matrix}$ | $\begin{pmatrix}1&2\\3&4\end{pmatrix}$ | $\begin{bmatrix}1&2\\3&4\end{bmatrix}$ | $\begin{Bmatrix}1&2\\3&4\end{Bmatrix}$ | $\begin{vmatrix}1&2\\3&4\end{vmatrix}$ | $\begin{Vmatrix}1&2\\3&4\end{Vmatrix}$ |
+
+**③带分割线的矩阵**
+
+>说明:  可以使用`cc|c`来在一个三列矩阵中插入分割线。
+
+>代码:
+>
+>```text
+>$$
+>\left[
+>\begin{array}{cc|c}
+>1&2&3\\
+>4&5&6
+>\end{array}
+>\right]
+>$$
+>```
+
+>效果:
+>$$
+>\left[
+>\begin{array}{cc|c}
+>1&2&3\\
+>4&5&6
+>\end{array}
+>\right]
+>$$
+
+**④行中矩阵**
+
+>代码:
+>
+>```text
+>$\bigl(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\bigr)$
+>```
+
+>效果:
+>$\bigl(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\bigr)$
+
+#### 4.13.17 方程式序列
+
+>说明:  可以使用`\begin{align}...\end{align}`来创建一列整齐且默认右对齐的方程式序列。请注意`{align}`是**自动编号**的，使用`{align*}`来声明停止自动编号，也可以使用`\notag`来取消特定行的自动编号。在需要的时候，你可以使用`\begin{equation}...\end{equation}`来强制表达式自动编号。
+
+>代码:
+>$$
+>\begin{align}
+>f(x)&=1+1\\
+>&=2
+>\end{align}
+>$$
+>
+>$$
+>\begin{equation}
+>\left[
+>\begin{array}{cc|c}
+>1&2&3\\
+>4&5&6
+>\end{array}
+>\right]
+>\end{equation}
+>$$
+>
+>
+>
+>```text
+>$$
+>\begin{align}
+>\sqrt{37}=\sqrt{\dfrac{73^2-1}{12^2}}\\
+>&=\sqrt{\dfrac{73^2}{12^2}\cdot\dfrac{73^2-1}{73^2}}\\
+>&=\sqrt{\dfrac{73^2}{12^2}}\sqrt{\dfrac{73^2-1}{73^2}}\notag\\
+>&=\dfrac{73}{12}\sqrt{1-\dfrac{1}{73^2}}\\
+>\approx\dfrac{73}{12}\left(1-\dfrac{1}{2\cdot73^2}\right)\label{A}
+>\end{align}
+>$$
+>***
+>
+>$$
+>\begin{align*}
+>v+m&=0&\text{Given}\tag1\\
+>-w&=-w+0&\text{additive identity}\tag2\\
+>-w+0&=-w+(v+w)&\text{equations $(1)$ and $(2)$}
+>\end{align*}
+>$$
+>```
+
+>效果:
+>$$
+>\begin{align}
+>\sqrt{37}&=\sqrt{\dfrac{73^2-1}{12^2}}\\
+>&=\sqrt{\dfrac{73^2}{12^2}\cdot\dfrac{73^2-1}{73^2}}\\
+>&=\sqrt{\dfrac{73^2}{12^2}}\sqrt{\dfrac{73^2-1}{73^2}}\notag\\
+>&=\dfrac{73}{12}\sqrt{1-\dfrac{1}{73^2}}\\
+>&\approx\dfrac{73}{12}\left(1-\dfrac{1}{2\cdot73^2}\right)\label{A}
+>\end{align}
+>$$
+>
+>***
+>
+>$$
+>\begin{align*}
+>v+m&=0&\text{Given}\tag1\\
+>-w&=-w+0&\text{additive identity}\tag2\\
+>-w+0&=-w+(v+w)&\text{equations $(1)$ and $(2)$}
+>\end{align*}
+>$$
+>
+>你可以使用`\label{标签}`来创建一个标签，就如上面的方程式序列中展示的那样，之后使用`\eqref{标签}`引用你想引用的公式，效果为：$\eqref{A}$。如果不想要括号，可以输入`\ref{标签}`，效果为：公式 $\ref{A}$。
+>
+>公式1和2的不同列之间存在间隔，如果你不想要，可以通过将`align`替换为`alignat{1}`来去除列间隔。
+
+#### 4.13.18 条件表达式
+
+>说明:  使用`\begin{cases}`来创造一组默认左对齐的条件表达式,在每一行插入`&`来指定需要对齐的内容,并在每一行结尾处使用`\\`,以`\end{cases}`结尾。
+
+>代码:
+>
+>```text
+>$$
+>f(n)=
+>\begin{cases}
+>n/2,&\text{if $n$ is even}\\
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}
+>$$
+>```
+
+>效果:
+>$$
+>f(n)=
+>\begin{cases}
+>n/2,&\text{if $n$ is even}\\
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}
+>$$
+
+#### 4.13.19 配置行高
+
+>说明:  可以使用`\\[2ex]`语句替代该行末尾的`\\`来让编译器适配 , 其中`[ex]`指一个"X-Height" , 即x字母高度 , 也可以使用`[3ex]`或`[4ex]`等。
+
+>代码:
+>
+>```text
+>$$
+>f(n)=
+>\begin{cases}
+>\dfrac n2,&\text{if $n$ is even}\\[2ex]
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}\tag{适配[2ex]}
+>$$
+>***
+>
+>$$
+>f(n)=
+>\begin{cases}
+>\dfrac n2,&\text{if $n$ is even}\\
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}\tag{不适配[2ex]}
+>$$
+>```
+
+>效果:
+>$$
+>f(n)=
+>\begin{cases}
+>\dfrac n2,&\text{if $n$ is even}\\[2ex]
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}\tag{适配[2ex]}
+>$$
+>
+>***
+>
+>$$
+>f(n)=
+>\begin{cases}
+>\dfrac n2,&\text{if $n$ is even}\\
+>3n+1,&\text{if $n$ is odd}
+>\end{cases}\tag{不适配[2ex]}
+>$$
+
+#### 4.13.20 数组与表格
+
+>说明:  数组与表格均以`\begin{array}`开头,并在其后定义列数及每一列的文本对齐方式,`c` `l` `r`分别代表居中、左对齐及右对齐。若要插入垂直分割线，在定义中插入`|`，若要插入水平分割线，在定义中加入`\hline`。
+
+>代码:
+>
+>```text
+>$$
+>\begin{array}{c|lcr}
+>n&\text{左对齐}&\text{居中对齐}&\text{右对齐}\\
+>\hline
+>1&0.24&1&125\\
+>2&-1&189&-8\\
+>3&-20&2000&1+10i
+>\end{array}
+>$$
+>```
+
+>效果:
+>$$
+>\begin{array}{c|lcr}
+>n&\text{左对齐}&\text{居中对齐}&\text{右对齐}\\
+>\hline
+>1&0.24&1&125\\
+>2&-1&189&-8\\
+>3&-20&2000&1+10i
+>\end{array}
+>$$
+
+#### 4.13.21 嵌套表格或数组
+
+>代码:
+>
+>```text
+>$$
+>% outer vertical array of arrays 外层垂直表格
+>\begin{array}{c}
+>% inner horizontal array of arrays 内层水平表格
+>\begin{array}{cc}
+>% inner array of minimum values 内层"最小值"数组
+>\begin{array}{c|cccc}
+>\text{min}&0&1&2&3\\
+>\hline
+>0&0&0&0&0\\
+>1&0&1&1&1\\
+>2&0&1&2&2\\
+>3&0&1&2&3\\
+>\end{array}
+>&
+>% inner array of maximum values 内层"最大值"数组
+>\begin{array}{c|cccc}
+>\text{max}&0&1&2&3\\
+>\hline
+>0&0&1&2&3\\
+>1&1&1&2&3\\
+>2&2&2&2&3\\
+>3&3&3&3&3
+>\end{array}
+>\end{array}
+>% 内层第一行表格组结束
+>\\
+>% inner array of delta values 内层第二行Delta值数组
+>\begin{array}{c|cccc}
+>\Delta&0&1&2&3\\
+>\hline
+>0&0&1&2&3\\
+>1&1&0&1&2\\
+>2&2&1&0&1\\
+>3&3&2&1&0
+>\end{array}
+>% 内层第二行表格组结束
+>\end{array}
+>$$
+>```
+
+>效果:
+>$$
+>% outer vertical array of arrays 外层垂直表格
+>\begin{array}{c}
+>% inner horizontal array of arrays 内层水平表格
+>\begin{array}{cc}
+>% inner array of minimum values 内层"最小值"数组
+>\begin{array}{c|cccc}
+>\text{min}&0&1&2&3\\
+>\hline
+>0&0&0&0&0\\
+>1&0&1&1&1\\
+>2&0&1&2&2\\
+>3&0&1&2&3\\
+>\end{array}
+>&
+>% inner array of maximum values 内层"最大值"数组
+>\begin{array}{c|cccc}
+>\text{max}&0&1&2&3\\
+>\hline
+>0&0&1&2&3\\
+>1&1&1&2&3\\
+>2&2&2&2&3\\
+>3&3&3&3&3
+>\end{array}
+>\end{array}
+>% 内层第一行表格组结束
+>\\
+>% inner array of delta values 内层第二行Delta值数组
+>\begin{array}{c|cccc}
+>\Delta&0&1&2&3\\
+>\hline
+>0&0&1&2&3\\
+>1&1&0&1&2\\
+>2&2&1&0&1\\
+>3&3&2&1&0
+>\end{array}
+>% 内层第二行表格组结束
+>\end{array}
+>$$
+
+#### 4.13.22 方程组
+
+>说明:  使用`\begin{array}...\end{array}`和`\left\{...\right.`来创建一个方程组,或者你也可以使用条件表达式组`\begin{cases}...\end{cases}`来实现相同效果。
+
+>代码:
+>
+>```text
+>$$
+>\left\{
+>\begin{array}{l}
+>a_1x+b_1y+c_1z=d_1\\
+>a_2x+b_2y+c_2z=d_2\\
+>a_3x+b_3y+c_1z=d_3
+>\end{array}
+>\right.
+>\quad\text{或者}\quad
+>\begin{cases}
+>a_1x+b_1y+c_1z=d_1\\
+>a_2x+b_2y+c_2z=d_2\\
+>a_3x+b_3y+c_1z=d_3
+>\end{cases}
+>$$
+>```
+
+>效果:
+>$$
+>\left\{
+>\begin{array}{l}
+>a_1x+b_1y+c_1z=d_1\\
+>a_2x+b_2y+c_2z=d_2\\
+>a_3x+b_3y+c_1z=d_3
+>\end{array}
+>\right.
+>\quad\text{或者}\quad
+>\begin{cases}
+>a_1x+b_1y+c_1z=d_1\\
+>a_2x+b_2y+c_2z=d_2\\
+>a_3x+b_3y+c_1z=d_3
+>\end{cases}
+>$$
+
+#### 4.13.23 连分式
+
+>说明:  就像`\frac`一样,使用`\cfrac`或`\dfrac`来创建一个连分式,不要使用普通的`\frac`或`\over`来创建,否则看起来会**很恶心**。
+
+>代码:
+>
+>```text
+>$$
+>x=a_0+\cfrac{1^2}{a_1+\cfrac{2^2}{a_2+\cfrac{3^2}{a_3+\cfrac{4^2}{a_4+\cdots}}}}
+>$$
+>```
+
+>效果:
+>$$
+>x=a_0+\cfrac{1^2}{a_1+\cfrac{2^2}{a_2+\cfrac{3^2}{a_3+\cfrac{4^2}{a_4+\cdots}}}}
+>$$
+
+>反例:
+>
+>```text
+>x=a_0+\frac{1^2}{a_1+\frac{2^2}{a_2+\frac{3^2}{a_3+\frac{4^2}{a_4+\cdots}}}}
+>```
+
+>效果:
+>$$
+>x=a_0+\frac{1^2}{a_1+\frac{2^2}{a_2+\frac{3^2}{a_3+\frac{4^2}{a_4+\cdots}}}}
+>$$
+
+>补充:  当然,你可以使用`\frac`来表达连分数的**紧缩记法**。
+
+>代码:
+>
+>```text
+>$$
+>x=a_0+\frac{1^2}{a_1+}\frac{2^2}{a_2+}\frac{3^2}{a_3+}\frac{4^2}{a_4+}\cdots
+>$$
+>```
+
+>效果:
+>$$
+>x=a_0+\frac{1^2}{a_1+}\frac{2^2}{a_2+}\frac{3^2}{a_3+}\frac{4^2}{a_4+}\cdots
+>$$
+
+#### 4.13.24 交换图表
+
+>说明:  使用一行`$\require{AMScd}$`语句来允许交换图表的显示,并通过在开头使用`\begin{CD}`,结尾使用`\end{CD}`来创建。
+
+>代码:
+>
+>```text
+>$$
+>\require{AMScd}
+>\begin{CD}
+>A@>a>>B\\
+>@VbVV\# @VcVV\\
+>C @>>d> D
+>\end{CD}
+>$$
+>```
+
+>效果:
+>$$
+>\require{AMScd}
+>\begin{CD}
+>A@>a>>B\\
+>@V b V V\# @VV c V\\
+>C @>>d> D
+>\end{CD}
+>$$
+
+>补充:  其中,`@>>>`代表右箭头、`@<<<`代表左箭头、`@VVV`代表下箭头、`@AAA`代表上箭头、`@=`代表水平双实线、`@|`代表竖直双实线、`@.`代表没有箭头。在`@>>>`的`>>>`之间任意插入文字即代表该箭头的注释文字。
+
+>代码:
+>
+>```text
+>$$
+>\begin{CD}
+>A@>>>B@>{\text{very long label}}>>C\\
+>@.@AAA@|\\
+>D@=E@<<<F
+>\end{CD}
+>$$
+>```
+
+>效果:
+>$$
+>\begin{CD}
+>A@>>>B@>{\text{very long label}}>>C\\
+>@.@AAA@|\\
+>D@=E@<<<F
+>\end{CD}
+>$$
+
+#### 4.13.25 其他
+
+>* 搜索$\LaTeX$
+
+### 4.14 支持的HTML元素
+
+#### 4.14.1 文本居中
+
+>代码
+>
+>```text
+><center>内容</center>
+>```
+
+>效果
+>
+><center>内容</center>
+
+#### 4.14.2 快捷键显示
+
+>代码:
+>
+>```text
+><kbd>内容</kbd>
+>```
+
+>效果:
+><kbd>内容</kbd>
+
+#### 4.14.3 加粗
+
+>代码:
+>
+>```text
+><b>加粗</b>
+>```
+
+>效果:
+>
+><b>加粗</b>
+
+#### 4.14.4 倾斜
+
+>代码:
+>
+>```text
+><i>倾斜</i>
+>```
+
+>效果:
+><i>倾斜</i>
+
+#### 4.14.5 上下标
+
+>代码:
+>
+>```text
+>开始<sup>123hi你好</sup>
+>开始<sub>321hi你好</sub>
+>```
+
+>效果:
+>开始<sup>123hi你好</sup>
+>开始<sub>321hi你好</sub>
+
+#### 4.14.6 填充的黑色箭头
+
+> 代码：
+>
+> ```text
+> &#x27A4;
+> ```
+
+> 效果：
+> &#x27A4;
+
+#### 4.14.7 分页符
+
+代码：
+
+```html
+<div STYLE="page-break-after: always;"></div>
+```
+
+效果为生成pdf时遇到分页符则新开一页再放分页符后内容
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -3034,7 +6032,7 @@ git clone https://github.com/fmtlib/fmt.git
 将下载好的工业相机SDK解压，在SDK文件夹下使用以下命令安装
 
 ```
-sudo sh install.sh
+sudo bash ./install.sh
 ```
 
 在项目文件夹 `MiracleVision` 下新建文件夹 `build` 
@@ -3554,3 +6552,9 @@ sudo systemctl status autoaim.service
 > [11] [ROS从入门到精通系列（五）catkin详解与catkin_make编译-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/hhaowang/article/details/101691986)
 >
 > [12] [2D激光slam四种算法建图效果对比_slam建图算法-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/m0_73791170/article/details/127339058?csdn_share_tail={"type"%3A"blog"%2C"rType"%3A"article"%2C"rId"%3A"127339058"%2C"source"%3A"Hong_J_0826"}&fromshare=blogdetail)
+>
+> [13] [关于重装电脑碰到的BUG及其修复教程_verification failed:(0x1a)-CSDN博客 - https://blog.csdn.net/](https://blog.csdn.net/Sco_ohhG/article/details/135394506)
+>
+> [14] [ROS—PGM地图文件的编辑 | 闫金钢的Blog - https://yanjingang.com/](https://yanjingang.com/blog/?p=8597)
+>
+> [15] [Ubuntu22.04 系统添加中文输入法 - zensi - 博客园 - https://www.cnblogs.com/](https://www.cnblogs.com/zensi/p/17725119.html?_refluxos=a10)
