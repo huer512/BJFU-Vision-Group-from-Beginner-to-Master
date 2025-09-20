@@ -5995,6 +5995,16 @@ int main()
 
 ## 6 视觉开发文档(MiracleVision)
 
+### 6.0 前置要求
+
+确保MiniPC在车上，并正确连接**电源线**、**摄像头**、**C板串口**（若需要整车测试）。
+
+使用*USB转TTL连接线*连接C板UART2与MiniPC上USB接口，串口引脚顺序按官方C板文档相应定义进行接线：
+
+<img src=".\北京林业大学RoboMaster机甲大师视觉组从入门到精通\image-20250912221435614.png" alt="image-20240123150219314" style="zoom: 65%;" />
+
+**注意**：MiniPC启动时必须连接摄像头，否则可能遇到无法启动的情况；使用完毕后，先使用`poweroff`关闭MiniPC，再下电。
+
 ### 6.1  部署
 
 #### 6.1.1 源代码仓库
@@ -6353,7 +6363,27 @@ sudo ./bin/MiracleVision
 
 打开调试模式，启动自瞄程序
 
-#### 6.3.1 串口
+#### 6.3.1 阈值
+
+对代码进行以下修改，使之实时显示摄像头效果。
+
+1. 进入`base/MiracleVision.cpp`注释掉`#define RELEASE`
+
+![微信图片_20250912224255](D:\项目\RM\BJFU-Vision-Group-from-Beginner-to-Master\北京林业大学RoboMaster机甲大师视觉组从入门到精通\微信图片_20250912224255.png)
+
+2. 将`switch (serial_.returnReceiveMode())`改为`switch (uart::AUTO_AIM)`
+
+![微信图片_20250912224303](D:\项目\RM\BJFU-Vision-Group-from-Beginner-to-Master\北京林业大学RoboMaster机甲大师视觉组从入门到精通\微信图片_20250912224303.png)
+
+3. 在`configs/armor/basic_armor_config.xml`中，将`DEBUG_MODE`改为`1`
+
+![微信图片_20250912224154](D:\项目\RM\BJFU-Vision-Group-from-Beginner-to-Master\北京林业大学RoboMaster机甲大师视觉组从入门到精通\微信图片_20250912224154.png)
+
+4. 可以按需要调整的参数设置EDIT参数，若要调整灰度阈值，则将`GRAY_EDIT`设为1，程序启动后将弹出滑块窗口。
+
+![微信图片_20250912224518](D:\项目\RM\BJFU-Vision-Group-from-Beginner-to-Master\北京林业大学RoboMaster机甲大师视觉组从入门到精通\微信图片_20250912224518.png)
+
+#### 6.3.2 串口
 
 查看控制台是否有 `[rec_info]` 串口解码信息输出，检查获取的各个参数是否正常
 
@@ -6369,7 +6399,7 @@ sudo ./bin/MiracleVision
 
 无法解决则更换串口模块 【注意：模块的芯片应为 `CP2102` （串口名称 `/dev/USB01` ）或模块使用STLink-V2.1（串口名称 `/dev/ACM01` ）】
 
-#### 6.3.2 装甲板跟随
+#### 6.3.3 装甲板跟随
 
 使用手持装甲板模块测试识别是否正常（远近，左右）
 
@@ -6389,7 +6419,7 @@ sudo ./bin/MiracleVision
 - 相机卡顿，在 UI 以及控制台可见卡顿现象，插拔相机以及重启程序，若不能解决，尝试更换相机在minipc的插入接口（换C口/反面USB口）【一般是相机供电不足引起】
 - 电控方面接收问题，找电控开调试查
 
-#### 6.3.3 弹道补偿调整
+#### 6.3.4 弹道补偿调整
 
 确认跟随正常后，开始调整弹速系数，改变装甲板远近/左右（固定靶），机器人开火
 
