@@ -144,7 +144,7 @@ $$\Huge \textbf{目录}$$
 
 ### 2.1 双系统安装&纯Ubuntu安装
 
-> Contributors: 叶睿聪 (dgsyrc@github)
+> Contributors: 叶睿聪 (dgsyrc@github)、唐锦梁
 
 #### 2.1.1 空间预留
 
@@ -450,6 +450,48 @@ sudo apt-get install -y boot-repair && boot-repair
 
 按工具提示执行完所有步骤后，重启就能够自动进入grub的启动选择页面了
 
+**③ Ubuntu与Windows双系统切换后Windows系统时间异常（通常相差8小时） **
+
+**触发原因：**Linux 默认将主板硬件时钟（RTC）视为 UTC 时间（世界协调时间）。其在显示时间时，会根据设置的时区（如中国 CST +8）自动加上偏移量。Windows 默认将主板硬件时钟视为 Local Time（本地时间）
+
+**冲突过程：**Ubuntu 将 RTC 设置为 UTC 时间（例如 0:00），界面显示为北京时间 8:00。重启进入 Windows，Windows 读取 RTC 为 0:00，直接当作本地时间显示，因此 Windows 显示时间为 0:00（慢了 8 小时）。如果在 Windows 中修正了时间为 8:00，RTC 也会被改为 8:00。重启回 Ubuntu，Ubuntu 读取 RTC 为 8:00（认为是 UTC），再加 8 小时时区，界面显示为 16:00（快了 8 小时）。
+
+**解决方式：**为了解决冲突，我们需要统一两个系统对待硬件时钟的标准。最简单且推荐的方法是修改 Ubuntu 的设置，使其顺应 Windows 的习惯（使用本地时间）。
+
+方式一：修改 Ubuntu 设置（推荐）
+
+进入 Ubuntu 系统。打开终端，输入以下命令并回车：
+
+```
+timedatectl set-local-rtc 1 --adjust-system-clock
+```
+验证设置，终端输入以下命令
+```
+timedatectl
+```
+如果输出中包含 `RTC in local TZ: yes`，说明设置成功
+重启电脑进入 Windows，进入"设置"→"时间和语言"→"日期和时间"→"自动设置时间"，将"自动设置时间"开关从开拨到关，然后再从关拨到开（可能需要等待一段时间）
+
+方式二：修改 Windows 注册表（仅供参考）（如选择方法一操作后无需再进行方法二操作!!!）
+
+改动 Windows 注册表有风险，谨慎操作!!!
+
+此方法在技术上更“正确”，但操作稍微繁琐，并且可能由于操作不当造成一些风险。
+
+进入 Windows 系统，按下 `Win + R`，输入 `regedit` 并回车，打开注册表编辑器
+
+定位到以下路径：`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation`
+
+在右侧空白处右键，选择 新建 (New) -> DWORD (32-bit) Value
+
+![image-20230713165504671](./北京林业大学RoboMaster机甲大师视觉组从入门到精通/双系统时间错乱修复-方式二-修改Windows注册表截图.png)
+
+将其命名为 `RealTimeIsUniversal`，双击该项，将其数值数据（Value data）修改为 `1`
+
+重启电脑进入 Ubuntu，确保时间正确。再次回到 Windows，时间应当已自动同步正常
+
+**后话：**虽然更推荐使用方式一来解决双系统时间冲突问题，虽然方式一是解决双系统时间冲突最简单的方法，但在技术原理上，其实是一种"不完美"的妥协。Linux 社区和系统开发者通常强烈建议使用 UTC，这是因为 Local Time 在某些场景（夏令时切换、跨时区旅行、双系统同时尝试调整夏令时）下会导致逻辑错误或系统故障。那既然问题这么多，为什么我还是推荐方式一呢? 因为作为一个中国大陆的居民，中国早已废除夏令时，所以只要不频繁跨时区出差/旅行，使用 Local Time 没有任何感知上的副作用。也推荐对 Windows 注册表有一定了解的用户使用方式二进行操作，从技术的角度上说，方式二更稳健、更规范
+
 ### 2.2 OpenCV
 
 > Contributors: 叶睿聪 (dgsyrc@github)
@@ -467,10 +509,10 @@ sudo apt-get install -y boot-repair && boot-repair
 依次执行以下指令
 
 ```
+sudo apt update
 sudo apt-get install build-essential
 sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
 sudo apt install -y make
-sudo apt update
 ```
 
 `sudo` 指令需要输入前面设置的密码
@@ -1128,7 +1170,7 @@ map.yaml：地图信息
 
 > Contributors: 叶睿聪 (dgsyrc@github)
 
-**注意，WSL2仅支持Win11系统**
+**注意，WSL2仅支持Win11系统和较新的 Win10（版本 2004 及以上）**
 
 #### 2.5.1 默认安装部分
 
@@ -4570,7 +4612,7 @@ while True:
     # print("output0 shape:", output0.shape)
     # %%
     boxes = output0
-    # print(boxes.shape) # 输出结果是 (8400,40
+    # print(boxes.shape) # 输出结果是 (8400,40)
     # 这里的boxes是一个二维数组，第一维是目标框的数量，第二维是目标框的属性，包括目标框的坐标和类别概率等信息。
     # 咱们细说第二维的属性：前4个元素是目标框的坐标信息，分别是目标框的中心坐标(x,y)和宽高(w,h)，后36个元素是目标框的类别概率信息，每个类别的概率占4个元素。
     # 所以[8400,40] 就代表着 8400个目标框，每个目标框有40个属性
@@ -6057,10 +6099,10 @@ mkdir build
 
 ```
 cmake ..
-make -j12
+make -j4
 ```
 
-其中 `-j12` 参数可选填，加了更快，但不建议大于12
+其中 `-j4` 参数可选填，加了更快，但不建议大于4（NUC 11为4核8线程，线程过高可能导致死机或编译报错）
 
 执行完成后，在 `build` 文件夹下执行以下命令运行
 
